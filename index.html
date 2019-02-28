@@ -155,6 +155,187 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-post-name" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/28/post-name/">post_name</a>
+    </h1>
+  
+
+        
+        <a href="/2019/02/28/post-name/" class="archive-article-date">
+  	<time datetime="2019-02-28T15:38:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/02/28/post-name/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-我的Hexo搭建过程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/28/我的Hexo搭建过程/">我的Hexo搭建过程</a>
+    </h1>
+  
+
+        
+        <a href="/2019/02/28/我的Hexo搭建过程/" class="archive-article-date">
+  	<time datetime="2019-02-28T14:08:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我是最近看了B站up主<a href="https://space.bilibili.com/384068749?from=search&amp;seid=13150293354807841806" target="_blank" rel="noopener">CodeSheep</a>的视频一步一步搭建的这个Hexo博客，现在我简单介绍一下Hexo博客搭建的过程和遇到的一些问题还有我解决的办法，希望对其他想要搭建博客的萌新们有一点小小的帮助，如有不对的地方希望大佬见谅。</p>
+<hr>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>因为我用的是Windows7的系统，所以我就只介绍Win7的搭建过程。</p>
+<ul>
+<li><a href="https://nodejs.org/en/" target="_blank" rel="noopener">nodejs</a> 安装完成后可以通过cmd命令<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node -v</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>来查看nodejs是否安装好了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm -v</span><br></pre></td></tr></table></figure></p>
+<p>来查看npm是否也安装好了</p>
+<ul>
+<li>hexo 通过命令行来安装，需要npm来安装，但是由于npm下载太慢我们需要安装cnpm，再对国内的镜像源进行下载<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>通过这个命令来安装cnpm<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cnpm -v</span><br></pre></td></tr></table></figure></p>
+<p>这个命令可以检验你的cnpm是否也安装成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
+<p>执行这个命令就开始安装hexo<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo -v</span><br></pre></td></tr></table></figure></p>
+<p>验证hexo是否安装成功，不要觉得麻烦，当你真正搭建好博客时，那种成就感我们程序猿应该深有体会。</p>
+<ul>
+<li><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git</a> 这个是我之前没有安装的，当我开始往github上推我的hexo时，我发现我居然有个git命令不能执行导致我无法推送（尽管这不是唯一的问题）。之后的一系列命令行可以在这个git bash执行。</li>
+<li>自己选择一个盘符，建立一个文件夹，并通过gitbash跳转到这个目录下。</li>
+</ul>
+<h2 id="开始搭建"><a href="#开始搭建" class="headerlink" title="开始搭建"></a>开始搭建</h2><ul>
+<li>下载hexo框架<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>开始下载的hexo框架<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo -s</span><br></pre></td></tr></table></figure></p>
+<p>我们就可以看到生成博客了，在浏览器输入它给的本地网址</p>
+<ul>
+<li>部署到gitgub 登陆github新建一个仓库，仓库名格式是：你的账号.github.io 之后创建，github会给你你一个网址，这个网址一定要记好（拿个记事本复制下来），这个就是以后我们hexo博客的网址。接下来我们需要到命令行下执行命令<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>接下来我们需要设置一个很关键的文件_config.yml,可以通过记事本打开，找到最下面的（记得：后面一定要加一个空格，没有的就自己创建）</p>
+<pre><code>deploy:
+    type: git
+    repo: 刚才的网址
+    branch: master
+</code></pre><p>接下来我们就可以回到命令行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure></p>
+<p>这样就开始把我们的hexo部署到github上了，中间会让你输入github的账号和密码，等待一段时间后我们就可以通过刚才的网址打开我们的博客了</p>
+<h2 id="拦路虎"><a href="#拦路虎" class="headerlink" title="拦路虎"></a>拦路虎</h2><ul>
+<li>往github上部署hexo的时候部署失败，但是我没有截图很可惜，简单描述下，就是命令行出现了几个错误报告</li>
+</ul>
+<p>git失败</p>
+<p>解决方案：安装gitbash</p>
+<p>npm WARN deprecated <a href="mailto:minimatch@2.0.10" target="_blank" rel="noopener">minimatch@2.0.10</a>: Please update to minimatch 3.0.2 or higher to avoid a RegExp DoS issue</p>
+<p>解决方案：我把npm的版本调低，没用，但是第二天重新部署hexo，一次成功了</p>
+<ul>
+<li>打不开github</li>
+</ul>
+<p>github响应时间过长/拒绝了你的访问</p>
+<p>解决方案：打开C:\Windows\System32\drivers\etc\hosts文件在最后添加192.30.253.113 github.com</p>
+<ul>
+<li>没有hosts文件</li>
+</ul>
+<p>C:\Windows\System32\drivers\etc没有hosts文件</p>
+<p>解决方案：在桌面新建一个记事本，重命名为hosts，去掉后缀名，剪切到路径下，并打开属性-&gt;安全给它赋予最高权限</p>
+<p>这些就是我所遇到的问题，经历一天的努力终于能通过网址访问博客了。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>CodeSheep在视频中还是说的非常清楚的，但是由于自身的一些因素没能很快的解决这些问题，所幸博客最终搭建完成</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/02/28/我的Hexo搭建过程/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-我的第一篇博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
