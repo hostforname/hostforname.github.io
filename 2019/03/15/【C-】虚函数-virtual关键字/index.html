@@ -6,18 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 郑志豪的个人博客</title>
+  <title>【C++】虚函数 virtual关键字 | 郑志豪的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="莹莹之火">
-<meta property="og:type" content="website">
-<meta property="og:title" content="郑志豪的个人博客">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="虚函数 用virtual关键字说明的函数 虚函数是实现运行时多态性基础 C++中的虚函数是动态绑定的函数 虚函数必须是非静态的成员函数，虚函数经过派生之后，就可以实现运行过程中的多态 一般成员函数可以使虚函数 构造函数不能是虚函数 析构函数可以使虚函数  下面放上跟着视频敲的代码：12345678910111213141516171819202122232425262728293031323334">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【C++】虚函数 virtual关键字">
+<meta property="og:url" content="http://yoursite.com/2019/03/15/【C-】虚函数-virtual关键字/index.html">
 <meta property="og:site_name" content="郑志豪的个人博客">
-<meta property="og:description" content="莹莹之火">
+<meta property="og:description" content="虚函数 用virtual关键字说明的函数 虚函数是实现运行时多态性基础 C++中的虚函数是动态绑定的函数 虚函数必须是非静态的成员函数，虚函数经过派生之后，就可以实现运行过程中的多态 一般成员函数可以使虚函数 构造函数不能是虚函数 析构函数可以使虚函数  下面放上跟着视频敲的代码：12345678910111213141516171819202122232425262728293031323334">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/03/15/【C-】虚函数-virtual关键字/虚函数.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/15/【C-】虚函数-virtual关键字/虚函数的析构函数.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/15/【C-】虚函数-virtual关键字/虚表示意图.png">
+<meta property="og:updated_time" content="2019-03-15T16:16:14.363Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="郑志豪的个人博客">
-<meta name="twitter:description" content="莹莹之火">
+<meta name="twitter:title" content="【C++】虚函数 virtual关键字">
+<meta name="twitter:description" content="虚函数 用virtual关键字说明的函数 虚函数是实现运行时多态性基础 C++中的虚函数是动态绑定的函数 虚函数必须是非静态的成员函数，虚函数经过派生之后，就可以实现运行过程中的多态 一般成员函数可以使虚函数 构造函数不能是虚函数 析构函数可以使虚函数  下面放上跟着视频敲的代码：12345678910111213141516171819202122232425262728293031323334">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/15/【C-】虚函数-virtual关键字/虚函数.png">
   
     <link rel="alternative" href="/atom.xml" title="郑志豪的个人博客" type="application/atom+xml">
   
@@ -153,184 +158,208 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-【C-】虚函数-virtual关键字" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      【C++】虚函数 virtual关键字
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/15/【C-】虚函数-virtual关键字/" class="archive-article-date">
+
+        
+        <a href="/2019/03/15/【C-】虚函数-virtual关键字/" class="archive-article-date">
   	<time datetime="2019-03-15T15:37:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/15/【C-】虚函数-virtual关键字/">【C++】虚函数 virtual关键字</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="虚函数"><a href="#虚函数" class="headerlink" title="虚函数"></a>虚函数</h2><ul>
+<li>用virtual关键字说明的函数</li>
+<li>虚函数是实现运行时多态性基础</li>
+<li>C++中的虚函数是动态绑定的函数</li>
+<li>虚函数必须是非静态的成员函数，虚函数经过派生之后，就可以实现运行过程中的多态</li>
+<li>一般成员函数可以使虚函数</li>
+<li>构造函数不能是虚函数</li>
+<li>析构函数可以使虚函数</li>
+</ul>
+<p>下面放上跟着视频敲的代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt; </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base1</span> &#123;</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> <span class="keyword">const</span></span>;  <span class="comment">//虚函数，虚函数一般不声明为内联函数，因为对虚函数的调用需要动态绑定，而对内联函数的处理是静态的，虚函数声明只能出现在类定义中的函数原型声明中，而不能在成员函数实现的时候</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Base1::display() <span class="keyword">const</span> &#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base1::display()"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base2</span> :</span> <span class="keyword">public</span> Base1 &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> <span class="keyword">const</span></span>;  <span class="comment">//在派生类中可以对基类的成员函数进行覆盖</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Base2::display() <span class="keyword">const</span> &#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base2::display()"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span> :</span> <span class="keyword">public</span> Base2 &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Derived::display() <span class="keyword">const</span> &#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"Derived::display()"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(Base1 *ptr)</span> </span>&#123;</span><br><span class="line">  ptr -&gt; display();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Base1 base1;</span><br><span class="line">  Base2 base2;</span><br><span class="line">  Derived derived;</span><br><span class="line">  </span><br><span class="line">  fun(&amp;base1);</span><br><span class="line">  fun(&amp;base2);</span><br><span class="line">  fun(&amp;derived);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行截图是这样的：<br><img src="/2019/03/15/【C-】虚函数-virtual关键字/虚函数.png" alt="xhs"></p>
+<h2 id="virtual关键字"><a href="#virtual关键字" class="headerlink" title="virtual关键字"></a>virtual关键字</h2><ul>
+<li>派生类可以不显式地用virtual声明虚函数，这时系统就会用以下规则来判断派生类的一个函数成员是不是虚函数：<ul>
+<li>该函数是否与基类的虚函数有相同的名称、参数个数及对应的参数类型；</li>
+<li>该函数是否与基类的虚函数有相同的返回值或者满足类型兼容规则的指针、引用型的返回值；</li>
+</ul>
+</li>
+<li>如果从名称、参数及返回值三个方面检查之后，派生类的函数满足上述条件，就会自动确定为虚函数。这时，派生类的虚函数便覆盖了基类的虚函数。</li>
+<li>派生类中的虚函数还会隐藏基类中同名函数的所有其他重载形式。</li>
+<li>一般习惯于在派生类的函数中也使用virtual关键字，以增加程序的可读性。</li>
+</ul>
+<h2 id="虚函数的析构函数"><a href="#虚函数的析构函数" class="headerlink" title="虚函数的析构函数"></a>虚函数的析构函数</h2><p>直接贴上代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//虚函数的析构函数</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt; </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> &#123;</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~Base();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Base::~Base() &#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base destructor"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span> :</span> <span class="keyword">public</span> Base &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    Derived();</span><br><span class="line">    <span class="keyword">virtual</span> ~Derived();  <span class="comment">//每个派生类的析构函数执行完成之后会接着调用基类的析构函数</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> *p;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Derived::Derived() &#123;</span><br><span class="line">  p = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Derived::~Derived() &#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"Derived destrutor"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">delete</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(Base* b)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">delete</span> b;     <span class="comment">//如果前面Base类中的析构函数不是虚函数的话，它就会在编译过程中绑定上Base类的析构函数，导致Derived类中的析构函数无法执行，从而导致内存泄漏</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Base *b = <span class="keyword">new</span> Derived();</span><br><span class="line">  fun(b);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行结果如下：<img src="/2019/03/15/【C-】虚函数-virtual关键字/虚函数的析构函数.png" alt="xhsdxghs"></p>
+<h2 id="虚表"><a href="#虚表" class="headerlink" title="虚表"></a>虚表</h2><ul>
+<li>虚表<ul>
+<li>每个多态类有一个虚表（virtual table）</li>
+<li>虚表中有当前类的各个虚函数的入口地址</li>
+<li>每个对象有一个指向当前类的虚表的指针（虚指针）</li>
+</ul>
+</li>
+<li>动态绑定的实现<ul>
+<li>构造函数中为对象的虚指针赋值</li>
+<li>通过多态类型的指针或引用调用成员函数时，通过虚指针找到虚表，进而找到所调用的虚函数的入口地址</li>
+<li>通过该入口地址调用虚函数</li>
+</ul>
+</li>
+<li>虚表的示意图如下<ul>
+<li><img src="/2019/03/15/【C-】虚函数-virtual关键字/虚表示意图.png" alt="xbsyt"></li>
+</ul>
+</li>
+</ul>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><ul>
+<li>为什么这么久才更新呢？<ul>
+<li>不想给自己找理由，就是自己懒了，但是C++的视频还在看，算法的书还在看，总结一点我没有放弃学习</li>
+<li>最近确实有点事，学校开始检查宿舍卫生，而我的台式电脑是在床上的这样就可能检查过不了了，所以我前几天都没机会碰电脑</li>
+</ul>
+</li>
+<li>我的视频从哪看的，看到是谁的？<ul>
+<li>我的C++视频都是从<a href="http://www.xuetangx.com/" target="_blank" rel="noopener">学堂在线</a>这个网站看到，是一个清华大学的慕课，虽然B站上也有录频，但是学堂在线上有字幕，还有一些问题，一些名词的解释，和源代码</li>
+<li>虽然这些代码都不是我自己想出来的，但是我都是一个字一个字敲出来的，绝对没有Ctrl c + Ctrl v，这些名词解释也是一个字一个字敲出来的，因为我觉得自己敲上一遍可能记得牢固一点吧。</li>
+</ul>
+</li>
+</ul>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/15/【C-】虚函数-virtual关键字/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/05/测试图片/" class="archive-article-date">
-  	<time datetime="2019-03-05T15:44:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-05</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/05/测试图片/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">测试图片</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/05/测试图片/">测试图片</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/02/【C-】友元及const关键字的用法/" class="archive-article-date">
-  	<time datetime="2019-03-02T15:26:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/02/【C-】友元及const关键字的用法/">【C++】友元及const关键字的用法</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/01/【梳理】我自身学习的近况及未来/" class="archive-article-date">
-  	<time datetime="2019-03-01T13:35:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/01/【梳理】我自身学习的近况及未来/">【梳理】我自身学习的近况及未来</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/28/我的Hexo搭建过程/" class="archive-article-date">
-  	<time datetime="2019-02-28T14:08:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/28/我的Hexo搭建过程/">我的Hexo搭建过程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/26/我的第一篇博客/" class="archive-article-date">
-  	<time datetime="2019-02-26T10:14:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/26/我的第一篇博客/">我的第一篇博客文章</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -353,8 +382,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
