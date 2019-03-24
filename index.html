@@ -58,6 +58,10 @@
 			
 				<li><a href="/">主页</a></li>
 	        
+				<li><a href="/tags/C＋＋/">C++</a></li>
+	        
+				<li><a href="/tags/算法/">算法</a></li>
+	        
 				<li><a href="/tags/随笔/">随笔</a></li>
 	        
 			</ul>
@@ -116,6 +120,10 @@
 			
 				
 			
+				
+			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -133,12 +141,16 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 25%"><a href="/tags/C＋＋/">C++</a></li>
+		        
+					<li style="width: 25%"><a href="/tags/算法/">算法</a></li>
+		        
+					<li style="width: 25%"><a href="/tags/随笔/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -179,15 +191,8 @@
 <h2 id="棋盘覆盖算法分析"><a href="#棋盘覆盖算法分析" class="headerlink" title="棋盘覆盖算法分析"></a>棋盘覆盖算法分析</h2><ul>
 <li>开始我的想法是不断把大的数组通过分解的方法赋值给4个规模减半的数组，直到分到2*2规模的数组然后进行填充</li>
 <li>但是我一直没弄明白原数组行列与规模小一倍的数组行列之间的关系，总是会把其他三个数组的填充，填到左上角的那个矩阵中，导致无法实现算法。</li>
-<li>这让我很沮丧，我太注重具体数字的变化，而不是找出变化的规律，这让我只能找到带有具体规模的解，而不是一类型的解。<br><img src="/2019/03/23/【算法】棋盘覆盖问题/分解.png" alt="fenjie"></li>
-<li>通过上图我们可以看到他是不断分解成小的，最后对无法分解的已经填充了的小矩阵组合成了完整的我们想要的答案。</li>
-<li>我们通过一开始给定的特殊方块，对方块所在4个小矩阵的那个矩阵进行判断，如果在左上角那么就继续往下找，找到了就进行填充，直到把左上角矩阵全部覆盖完，然后判断是不是在右上角，如果不在，那么就对选择原矩阵中间四个方块属于自己的方块作为特殊方块，然后往下覆盖。一直把4个方位的矩阵判断完成，我们也就得到我们想要的答案了。</li>
-<li>但是值得注意的是在对除左上角的的矩阵a[0][0]之外，我们想要分解就要在数组的下标加上规模减半的值，例如右下角，那么右下角的起始方块就是（n为矩阵的大小）a[0 + n / 2][0 + n / 2],再往下再找右下角的小矩阵时就要a[0 + n / 2 + n / 4][0 + n / 2 + n / 4]以此类推，掌握这个我们基本上就能正确的实现算法。<h2 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*棋盘覆盖*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt; </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 8</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">char</span> mz = <span class="number">65</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reduce</span><span class="params">(<span class="keyword">char</span> a[][N], <span class="keyword">int</span> r, <span class="keyword">int</span> w, <span class="keyword">int</span> h, <span class="keyword">int</span> l, <span class="keyword">int</span> n)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span> a[N][N];</span><br><span class="line">	<span class="keyword">int</span> h, l;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; h &gt;&gt; l;</span><br><span class="line"></span><br><span class="line">	a[h][l] = <span class="string">'a'</span>;</span><br><span class="line"></span><br><span class="line">	reduce(a, <span class="number">0</span>, <span class="number">0</span>, h, l, N);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++)	&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; a[i][j] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//查找特殊方块所在的方位并记录坐标，一个有4个if...else语句，但是必定对其中三个进行赋值，另外一个则代表着特殊方块的位置</span></span><br><span class="line"><span class="comment">//r，w记录着每个赋值在原始数组中的行列位置，而h和l已经赋值过作为特殊方块的行列位置，这里的s的不断缩小，与r和w组合起来就可以一步一步缩小范围定位到特殊方块的周围</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reduce</span><span class="params">(<span class="keyword">char</span> a[][N], <span class="keyword">int</span> r, <span class="keyword">int</span> w, <span class="keyword">int</span> h, <span class="keyword">int</span> l, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (n != <span class="number">1</span>) &#123;  <span class="comment">//把n规模减小到2*2的矩阵里，如果还减少就到了递归的尽头</span></span><br><span class="line">		<span class="keyword">int</span> s = n / <span class="number">2</span>;  <span class="comment">//规模减半</span></span><br><span class="line">		<span class="keyword">char</span> zm = mz++;			<span class="comment">//这里一定要用一个变量接收全局变量的值，并且下面的用这个变量而不是用全局变量，不然这里的自增在递归结束返回上一次对其他需要赋值的地方产生影响</span></span><br><span class="line">		<span class="comment">//左上角查找特殊方块</span></span><br><span class="line">		<span class="keyword">if</span> (h &lt; s + r &amp;&amp; l &lt; s + w) &#123;		<span class="comment">//特殊方块在左上角的规模减半的矩阵里</span></span><br><span class="line">			reduce(a, r, w, h, l, s);		<span class="comment">//</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;								<span class="comment">//特殊方块不在左上角的，那么就把矩阵中心属于左上角的块标记为特殊方块继续往下覆盖</span></span><br><span class="line">			a[s + r - <span class="number">1</span>][s + w - <span class="number">1</span>] = zm;</span><br><span class="line">			reduce(a, r, w, s + r - <span class="number">1</span>, s + w - <span class="number">1</span>, s);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//右上角查找特殊方块</span></span><br><span class="line">		<span class="keyword">if</span> (h &lt; s + r &amp;&amp; l &gt;= s + w) &#123;		<span class="comment">//特殊方块在右上角的规模减半的矩阵里</span></span><br><span class="line">			reduce(a, r, w + s, h, l, s);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;								<span class="comment">//特殊方块不在右上角的，那么就把矩阵中心属于右上角的块标记为特殊方块继续往下覆盖</span></span><br><span class="line">			a[s + r - <span class="number">1</span>][s + w] = zm;</span><br><span class="line">			reduce(a, r, w + s, s + r - <span class="number">1</span>, s + w, s);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//左下角查找特殊方块</span></span><br><span class="line">		<span class="keyword">if</span> (h &gt;= s + r &amp;&amp; l &lt; s + w) &#123;		<span class="comment">//特殊方块在左下角的规模减半的矩阵里</span></span><br><span class="line">			reduce(a, r + s, w, h, l, s);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;								<span class="comment">//特殊方块不在左下角的，那么就把矩阵中心属于左下角的块标记为特殊方块继续往下覆盖</span></span><br><span class="line">			a[s + r][s + w - <span class="number">1</span>] = zm;</span><br><span class="line">			reduce(a, r + s, w, s + r, s + w - <span class="number">1</span>, s);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//右下角查找特殊方块</span></span><br><span class="line">		<span class="keyword">if</span> (h &gt;= s + r &amp;&amp; l &gt;= s + w) &#123;		<span class="comment">//特殊方块在右下角的规模减半的矩阵里</span></span><br><span class="line">			reduce(a, r + s, w + s, h, l, s);</span><br><span class="line">		&#125;	</span><br><span class="line">		<span class="keyword">else</span> &#123;								<span class="comment">//特殊方块不在右下角的，那么就把矩阵中心属于右下角的块标记为特殊方块继续往下覆盖</span></span><br><span class="line">			a[s + r][s + w] = zm;</span><br><span class="line">			reduce(a, r + s, w + s, s + r, s + w, s);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>附上运行结果图：<br><img src="/2019/03/23/【算法】棋盘覆盖问题/结果.png" alt="jieguo"></p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>找不出规律的时候确实很难受，脑子里什么也不想只想解决问题，最后还是没能解决，通过查看别人博客才完全解决。没关系，至少我见识了这个问题，我相信下次遇见绝对不会手软的！！！</p>
-
+<li>这让我很沮丧，我太注重具体数字的变化，而不是找出变化的规律，这让我只能找到带有具体规模的解，而不是一类型的解。</li></ul>
+        
       
 
       
@@ -195,6 +200,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -253,20 +269,8 @@
 <h2 id="override-和-final"><a href="#override-和-final" class="headerlink" title="override 和 final"></a>override 和 final</h2><p>这个两个是C++ 11新标准中添加的两个不是关键字的变量名，但是为了程序的可读性还是希望把它看成关键字，不要用这两个单词作为函数名和类名。<br>接下来说说override 和 final有什么作用。</p>
 <ul>
 <li>override 在基类的派生类中，如果我们需要覆盖基类的函数，我们可以加上override，它可以帮助我们在编译的时候发现派生类覆盖的函数是不是缺少了什么参数，从而导致没有覆盖基类的函数</li>
-<li>final 用来避免某个类被继承或者某个函数不被继承<br>具体如下：<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//抽象类的纯虚函数和override和final</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt; </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> &#123;</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f1</span><span class="params">(<span class="keyword">int</span>)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="keyword">virtual</span> ~Base() &#123;&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Base::f1(<span class="keyword">int</span>) <span class="keyword">const</span>&#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base f1"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这里的final表示这个类不能被继承了,这里把Derived作为基类，以后就不能对这个类进行派生了</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span> <span class="title">final</span> :</span> <span class="keyword">public</span> Base &#123;  </span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">//在派生类对虚函数的继承重载中如果少写了什么参数导致和基类的虚函数不同这里可以发出错误提示。final表示这个函数不能被继承了；</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f1</span><span class="params">(<span class="keyword">int</span>)</span> <span class="keyword">const</span> override final</span>;  <span class="comment">//如果这里只写这样 void f1(int); 的话，它不会报错，但是它已经改变了我们想要继承基类并覆盖Base的f1函数</span></span><br><span class="line">    ~Derived() &#123;&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Derived::f1(<span class="keyword">int</span>) <span class="keyword">const</span> &#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"derived f1"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Base *b;</span><br><span class="line">  b = <span class="keyword">new</span> Base;</span><br><span class="line">  b -&gt; f1(<span class="number">1</span>);</span><br><span class="line">  b = <span class="keyword">new</span> Derived;</span><br><span class="line">  b -&gt; f1(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>这是没使用override的运行结果：<br><img src="/2019/03/19/【C-】抽象类-override-final/or.png" alt="or"><br>这是经过override提示，发现缺少const，之后添加上const，就可以看到想要的结果了：<br><img src="/2019/03/19/【C-】抽象类-override-final/yor.png" alt="yor"></p>
-<h2 id="struct"><a href="#struct" class="headerlink" title="struct"></a>struct</h2><p>在学习的过程中我发现了这个关键字，视频中使用的不是class这个关键字，而是使用struct。所以我查了一点资料在<a href="https://www.cnblogs.com/starfire86/p/5367740.html" target="_blank" rel="noopener">C++中结构体与类的区别（struct与class的区别）</a>发现在C++中对C语言中的struct进行了扩充使得它拥有和class关键字的作用。struct也能包含成员函数，也能被继承，同样也能实现多态。<br>但是struct和class还是有区别的，最本质的区别就是默认的访问控制：<br><strong><label style="color:red">默认的继承访问权限</label></strong></p>
-<ul>
-<li>struct 继承时，作为数据结构的实现体，它默认的数据访问控制是public的</li>
-<li>class 继承时，作为对象的实现体，它默认的数据访问控制是private的<br>struct和class的使用并没有什么区别，你甚至在不用考虑访问控制的时候把所有class换成struct，程序也能运行。但是我们还是希望，在程序中明确的指出访问控制。<br>但是这里并没有结束，struct是对C语言的扩充，既然是扩充，那它就应该还拥有过去C语言所有的特性例如我们可以这样写：<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span> &#123;</span></span><br><span class="line"> <span class="keyword">char</span> c;</span><br><span class="line"> <span class="keyword">int</span> i;</span><br><span class="line"> <span class="keyword">double</span> d;</span><br><span class="line">&#125;;</span><br><span class="line">A a = &#123;<span class="string">'c'</span>, <span class="number">5</span>, <span class="number">1.2587</span>&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>这就说明struct可以在定义的时候用{}赋初值，但是class就不行。但是我们在struct中加入一个构造函数（或虚函数），那么使用{}也不能赋值了。根据大佬的总结就是：<label style="color:red">用{}对struct赋初值，是一种简单的复制操作，只能发生在简单的数据结构上；但是加入一个构造函数或者虚函数会使得struct更像对象，所以{}操作就不在有效</label><br>这依然没有结束，将struct改成class也不是不能用{}，但是这个就是前面所说的控制访问，struct是public访问而class是private访问，只要我们在class里加上public:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"> <span class="keyword">char</span> c;</span><br><span class="line"> <span class="keyword">int</span> i;</span><br><span class="line"> <span class="keyword">double</span> d;</span><br><span class="line">&#125;;</span><br><span class="line">A a = &#123;<span class="string">'c'</span>, <span class="number">5</span>, <span class="number">1.2587</span>&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>这样程序也就不会报错了。<br>总结：<label style="color:red">struct更适合数据结构的实现体，class更适合对象的实现体</label>。</p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>今天一天依旧充实，学习了不多的一点知识，但是一直学习这种状态我是很满足的，即使学的有点慢。</p>
-
+<li>final 用来避免某个类被继承或者某个函数不被继承<br>具体如下：</li></ul>
+        
       
 
       
@@ -274,6 +278,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C＋＋</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -339,20 +354,8 @@
 </ul>
 </li>
 </ul>
-<h2 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h2><h3 id="二维旋转数组"><a href="#二维旋转数组" class="headerlink" title="二维旋转数组"></a>二维旋转数组</h3><p>这是完全实现了功能的数组，但是里面有很多参数是试出来的，所以我对这个算法很不满意<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 9</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span> a[][N], <span class="keyword">int</span> n, <span class="keyword">int</span> h, <span class="keyword">int</span> t)</span></span>;<span class="comment">//数组a保证每次传入的数组都是原数组a，n是说明宽是多少，h表示从下标为h，h的数组开始转动，t保存这次旋转加的值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//旋转数组，只针对行列相同的数组</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[N][N];</span><br><span class="line">	<span class="keyword">int</span> i, j;</span><br><span class="line">	<span class="comment">//对数组进行初始化</span></span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N;i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (j = <span class="number">0</span>;j &lt; N;j++) &#123;</span><br><span class="line">			a[i][j] = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	rotate(a, N, <span class="number">0</span>, <span class="number">0</span>); <span class="comment">//传递数组a的首地址（在函数中修改数组，原数组也会发生变化），二维数组宽度，从a[h][h]开始h=0,t记录递归调用时加到了哪一个数</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//输出旋转完成的数组</span></span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N;i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (j = <span class="number">0</span>;j &lt; N;j++) &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%4d "</span>, a[i][j]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span> a[][N], <span class="keyword">int</span> n, <span class="keyword">int</span> h, <span class="keyword">int</span> t)</span> </span>&#123;  </span><br><span class="line">	<span class="keyword">int</span> i = h, j = h, k = h; <span class="comment">//k每次方向改变赋值的次数</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (N - h * <span class="number">2</span> - <span class="number">2</span> &gt;= <span class="number">0</span>) &#123;  <span class="comment">//判断进行多少次递归调用</span></span><br><span class="line">		<span class="keyword">while</span> (k &lt; n - <span class="number">1</span>) &#123;	<span class="comment">//向下的赋值，while循环的条件保证了每次方向相同时的赋值的次数，2行2列会有4个重复，所以这里减1</span></span><br><span class="line">			k++;</span><br><span class="line">			t++;</span><br><span class="line">			a[i][j] = t;</span><br><span class="line">			i++;	</span><br><span class="line">		&#125;</span><br><span class="line">		k = h;  <span class="comment">//k重置次数</span></span><br><span class="line">		<span class="keyword">while</span> (k &lt; n - <span class="number">1</span>) &#123;	<span class="comment">//向右的赋值</span></span><br><span class="line">			k++;</span><br><span class="line">			t++;</span><br><span class="line">			a[i][j] = t;</span><br><span class="line">			j++;	</span><br><span class="line">		&#125;</span><br><span class="line">		k = h;</span><br><span class="line">		<span class="keyword">while</span> (k &lt; n - <span class="number">1</span>) &#123;	<span class="comment">//向上的赋值</span></span><br><span class="line">			k++;</span><br><span class="line">			t++;</span><br><span class="line">			a[i][j] = t;</span><br><span class="line">			i--;	</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		k = h;</span><br><span class="line">		<span class="keyword">while</span> (k &lt; n - <span class="number">1</span>) &#123;	<span class="comment">//向左的赋值</span></span><br><span class="line">			k++;</span><br><span class="line">			t++;</span><br><span class="line">			a[i][j] = t;</span><br><span class="line">			j--;	</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		h++;  <span class="comment">//旋转起始位置改变</span></span><br><span class="line">		n -= <span class="number">1</span>;	<span class="comment">//</span></span><br><span class="line">		rotate(a, n, h, t);<span class="comment">//进行递归调用，每次规模都减小旋转</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (t &lt; N * N) &#123; <span class="comment">//如果宽度为奇数到最后就会只剩下一个，所以单独拿出来赋值</span></span><br><span class="line">		a[h][h] = t + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="优化二维旋转数组1"><a href="#优化二维旋转数组1" class="headerlink" title="优化二维旋转数组1"></a>优化二维旋转数组1</h3><p>从上往下看，我先是优化了主函数，把数组的初始化去掉，改为在函数体内为它初始化<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[N][N];</span><br><span class="line">	<span class="keyword">int</span> i, j;</span><br><span class="line"></span><br><span class="line">	rotate(a, N, <span class="number">0</span>, <span class="number">0</span>); <span class="comment">//传递数组a的首地址（在函数中修改数组，原数组也会发生变化），层的下底为10，层的上底为0，t记录递归调用时加到了哪一个数</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//输出旋转完成的数组</span></span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N;i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (j = <span class="number">0</span>;j &lt; N;j++) &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%4d "</span>, a[i][j]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>然后对函数体内的参数进行优化，我先是搞明白到底递归多少次是由什么元素决定的。最后我明白这是由n和h决定的，h是永远不会大于n的，最多等于n，而等于n就是前面所说的二维数组大小为奇数的情况，因此我做了如下修改：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span> a[][N], <span class="keyword">int</span> n, <span class="keyword">int</span> h, <span class="keyword">int</span> t)</span> </span>&#123;  </span><br><span class="line">	<span class="keyword">int</span> i = h, j = h, k; <span class="comment">//把k = h放到if语句里更能清晰</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ( h &lt; n - <span class="number">1</span>) &#123;  <span class="comment">//这里n - 1考虑到我主函数第一次传递的是N</span></span><br><span class="line">		n--;	<span class="comment">//把后面的n -= 1往前面提</span></span><br><span class="line"></span><br><span class="line">		k = h;</span><br><span class="line">		<span class="keyword">while</span> (k &lt; n ) &#123;	<span class="comment">//因为我把n -= 1前提了，所以这里的while条件n不用再减1</span></span><br><span class="line">			k++;</span><br><span class="line">			t++;</span><br><span class="line">			a[i][j] = t;</span><br><span class="line">			i++;	 <span class="comment">//向下移动</span></span><br><span class="line">		&#125;</span><br><span class="line">		.......</span><br></pre></td></tr></table></figure>
-<h3 id="优化二维旋转数组2"><a href="#优化二维旋转数组2" class="headerlink" title="优化二维旋转数组2"></a>优化二维旋转数组2</h3><ul>
-<li>这个就是我自己能优化最终的版本，这里我放上最终的完整的代码</li>
-<li>优化了while循环里数字的改变，既然每次方向改变都是在上一次方向接着，并且只改变两个下标中的一个值，所以i和j继承自上一个循环，然后while循环通过i或者j的自增和自减作为判断条件，这样就可以把k值消去<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 9</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span> a[][N], <span class="keyword">int</span> h, <span class="keyword">int</span> n, <span class="keyword">int</span> t)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//旋转数组，只针对行列相同的数组</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[N][N];</span><br><span class="line">	<span class="keyword">int</span> i, j;</span><br><span class="line"></span><br><span class="line">	rotate(a, <span class="number">0</span>, N - <span class="number">1</span>, <span class="number">0</span>); <span class="comment">//传递数组a的首地址（在函数中修改数组，原数组也会发生变化），层的起始位置h，层的最大位置n，t记录递归调用时加到了哪一个数</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//输出旋转完成的数组</span></span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N;i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (j = <span class="number">0</span>;j &lt; N;j++) &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%3d "</span>, a[i][j]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//旋转数组，初始化</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span> a[][N], <span class="keyword">int</span> h, <span class="keyword">int</span> n, <span class="keyword">int</span> t)</span> </span>&#123;  </span><br><span class="line">	<span class="keyword">int</span> i = h, j = h; <span class="comment">//k每次方向改变赋值的次数</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (h &lt; n) &#123;  <span class="comment">//判断进行多少次递归调用</span></span><br><span class="line">		<span class="comment">//向下的赋值，while循环的条件保证了每次方向相同时的赋值的次数</span></span><br><span class="line">		<span class="keyword">while</span> (i &lt; n) &#123;	</span><br><span class="line">			t++;</span><br><span class="line">			a[i][j] = t;</span><br><span class="line">			i++;	 </span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//向右的赋值</span></span><br><span class="line">		<span class="keyword">while</span> (j &lt; n) &#123;	</span><br><span class="line">			t++;</span><br><span class="line">			a[i][j] = t;</span><br><span class="line">			j++;	</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//向上的赋值</span></span><br><span class="line">		<span class="keyword">while</span> (h &lt; i) &#123;	</span><br><span class="line">			t++;</span><br><span class="line">			a[i][j] = t;</span><br><span class="line">			i--;	</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//向左的赋值</span></span><br><span class="line">		<span class="keyword">while</span> (h &lt; j) &#123;	</span><br><span class="line">			t++;</span><br><span class="line">			a[i][j] = t;</span><br><span class="line">			j--;	</span><br><span class="line">		&#125;</span><br><span class="line">		n--;	<span class="comment">//层的最大位置</span></span><br><span class="line">		h++;	<span class="comment">//层的起始位置改变	</span></span><br><span class="line">		rotate(a, h, n, t);<span class="comment">//进行递归调用，每次规模都减小旋转</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (t &lt; N * N) &#123; <span class="comment">//如果宽度为奇数到最后就会只剩下一个，所以单独拿出来赋值</span></span><br><span class="line">		a[h][h] = t + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>偶数效果图：<img src="/2019/03/18/【算法】C语言写旋转数组/ossz.png" alt="ossz"><br>奇数效果图：<img src="/2019/03/18/【算法】C语言写旋转数组/jssz.png" alt="jssz"></p>
-<h2 id="算法扩展"><a href="#算法扩展" class="headerlink" title="算法扩展"></a>算法扩展</h2><p>老师说的整型的二维数组的旋转，我做了点小扩展，修改了一点点代码，做一个字符类型的二维数组旋转<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 9</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">char</span> a[][N], <span class="keyword">int</span> h, <span class="keyword">int</span> n)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//旋转数组，只针对行列相同的数组</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span> a[N][N];</span><br><span class="line">	<span class="keyword">int</span> i, j;</span><br><span class="line"></span><br><span class="line">	rotate(a, <span class="number">0</span>, N - <span class="number">1</span>); <span class="comment">//传递数组a的首地址（在函数中修改数组，原数组也会发生变化），层的起始位置h，层的最大位置n，t记录递归调用时加到了哪一个数</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//输出旋转完成的数组</span></span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N;i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (j = <span class="number">0</span>;j &lt; N;j++) &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%3c "</span>, a[i][j]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//旋转数组，初始化</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">char</span> a[][N], <span class="keyword">int</span> h, <span class="keyword">int</span> n)</span> </span>&#123;  </span><br><span class="line">	<span class="keyword">int</span> i = h, j = h; <span class="comment">//k每次方向改变赋值的次数</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> (h &lt; n) &#123;  <span class="comment">//判断进行多少次递归调用</span></span><br><span class="line">		<span class="comment">//向下的赋值，while循环的条件保证了每次方向相同时的赋值的次数</span></span><br><span class="line">		<span class="keyword">while</span> (i &lt; n) &#123;	</span><br><span class="line">			a[i][j] = <span class="number">31</span>;</span><br><span class="line">			i++;	 </span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//向右的赋值</span></span><br><span class="line">		<span class="keyword">while</span> (j &lt; n) &#123;	</span><br><span class="line">			a[i][j] = <span class="number">16</span>;</span><br><span class="line">			j++;	</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//向上的赋值</span></span><br><span class="line">		<span class="keyword">while</span> (h &lt; i) &#123;	</span><br><span class="line">			a[i][j] = <span class="number">30</span>;</span><br><span class="line">			i--;	</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//向左的赋值</span></span><br><span class="line">		<span class="keyword">while</span> (h &lt; j) &#123;	</span><br><span class="line">			a[i][j] = <span class="number">17</span>;</span><br><span class="line">			j--;	</span><br><span class="line">		&#125;</span><br><span class="line">		n--;	<span class="comment">//层数的最大位置</span></span><br><span class="line">		h++;	<span class="comment">//层的起始位置改变	</span></span><br><span class="line">		rotate(a, h, n);<span class="comment">//进行递归调用，每次规模都减小旋转</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123; <span class="comment">//如果宽度为奇数到最后就会只剩下一个，所以单独拿出来赋值</span></span><br><span class="line">		a[h][h] = <span class="number">31</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>字符效果图：<img src="/2019/03/18/【算法】C语言写旋转数组/xzzf.png" alt="xzzf"></p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>虽然这个算法弄了时间比较久，可能也没有优化到最简，但是这个过程我很享受，大脑不断的思考，尽管很累但是就是很爽，也许这就是代码的魅力吧！</p>
-
+<h2 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h2><h3 id="二维旋转数组"><a href="#二维旋转数组" class="headerlink" title="二维旋转数组"></a>二维旋转数组</h3><p>这是完全实现了功能的数组，但是里面有很多参数是试出来的，所以我对这个算法很不满意。<br></p>
+        
       
 
       
@@ -360,6 +363,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -424,50 +438,7 @@
 <li>析构函数可以使虚函数</li>
 </ul>
 <p>下面放上跟着视频敲的代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt; </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base1</span> &#123;</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> <span class="keyword">const</span></span>;  <span class="comment">//虚函数，虚函数一般不声明为内联函数，因为对虚函数的调用需要动态绑定，而对内联函数的处理是静态的，虚函数声明只能出现在类定义中的函数原型声明中，而不能在成员函数实现的时候</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Base1::display() <span class="keyword">const</span> &#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base1::display()"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base2</span> :</span> <span class="keyword">public</span> Base1 &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> <span class="keyword">const</span></span>;  <span class="comment">//在派生类中可以对基类的成员函数进行覆盖</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Base2::display() <span class="keyword">const</span> &#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base2::display()"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span> :</span> <span class="keyword">public</span> Base2 &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Derived::display() <span class="keyword">const</span> &#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"Derived::display()"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(Base1 *ptr)</span> </span>&#123;</span><br><span class="line">  ptr -&gt; display();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Base1 base1;</span><br><span class="line">  Base2 base2;</span><br><span class="line">  Derived derived;</span><br><span class="line">  </span><br><span class="line">  fun(&amp;base1);</span><br><span class="line">  fun(&amp;base2);</span><br><span class="line">  fun(&amp;derived);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>运行截图是这样的：<br><img src="/2019/03/15/【C-】虚函数-virtual关键字/虚函数.png" alt="xhs"></p>
-<h2 id="virtual关键字"><a href="#virtual关键字" class="headerlink" title="virtual关键字"></a>virtual关键字</h2><ul>
-<li>派生类可以不显式地用virtual声明虚函数，这时系统就会用以下规则来判断派生类的一个函数成员是不是虚函数：<ul>
-<li>该函数是否与基类的虚函数有相同的名称、参数个数及对应的参数类型；</li>
-<li>该函数是否与基类的虚函数有相同的返回值或者满足类型兼容规则的指针、引用型的返回值；</li>
-</ul>
-</li>
-<li>如果从名称、参数及返回值三个方面检查之后，派生类的函数满足上述条件，就会自动确定为虚函数。这时，派生类的虚函数便覆盖了基类的虚函数。</li>
-<li>派生类中的虚函数还会隐藏基类中同名函数的所有其他重载形式。</li>
-<li>一般习惯于在派生类的函数中也使用virtual关键字，以增加程序的可读性。</li>
-</ul>
-<h2 id="虚函数的析构函数"><a href="#虚函数的析构函数" class="headerlink" title="虚函数的析构函数"></a>虚函数的析构函数</h2><p>直接贴上代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//虚函数的析构函数</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt; </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> &#123;</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~Base();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Base::~Base() &#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base destructor"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span> :</span> <span class="keyword">public</span> Base &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    Derived();</span><br><span class="line">    <span class="keyword">virtual</span> ~Derived();  <span class="comment">//每个派生类的析构函数执行完成之后会接着调用基类的析构函数</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> *p;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Derived::Derived() &#123;</span><br><span class="line">  p = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Derived::~Derived() &#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"Derived destrutor"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">delete</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(Base* b)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">delete</span> b;     <span class="comment">//如果前面Base类中的析构函数不是虚函数的话，它就会在编译过程中绑定上Base类的析构函数，导致Derived类中的析构函数无法执行，从而导致内存泄漏</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Base *b = <span class="keyword">new</span> Derived();</span><br><span class="line">  fun(b);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>运行结果如下：<img src="/2019/03/15/【C-】虚函数-virtual关键字/虚函数的析构函数.png" alt="xhsdxghs"></p>
-<h2 id="虚表"><a href="#虚表" class="headerlink" title="虚表"></a>虚表</h2><ul>
-<li>虚表<ul>
-<li>每个多态类有一个虚表（virtual table）</li>
-<li>虚表中有当前类的各个虚函数的入口地址</li>
-<li>每个对象有一个指向当前类的虚表的指针（虚指针）</li>
-</ul>
-</li>
-<li>动态绑定的实现<ul>
-<li>构造函数中为对象的虚指针赋值</li>
-<li>通过多态类型的指针或引用调用成员函数时，通过虚指针找到虚表，进而找到所调用的虚函数的入口地址</li>
-<li>通过该入口地址调用虚函数</li>
-</ul>
-</li>
-<li>虚表的示意图如下<ul>
-<li><img src="/2019/03/15/【C-】虚函数-virtual关键字/虚表示意图.png" alt="xbsyt"></li>
-</ul>
-</li>
-</ul>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><ul>
-<li>为什么这么久才更新呢？<ul>
-<li>不想给自己找理由，就是自己懒了，但是C++的视频还在看，算法的书还在看，总结一点我没有放弃学习</li>
-<li>最近确实有点事，学校开始检查宿舍卫生，而我的台式电脑是在床上的这样就可能检查过不了了，所以我前几天都没机会碰电脑</li>
-</ul>
-</li>
-<li>我的视频从哪看的，看到是谁的？<ul>
-<li>我的C++视频都是从<a href="http://www.xuetangx.com/" target="_blank" rel="noopener">学堂在线</a>这个网站看到，是一个清华大学的慕课，虽然B站上也有录频，但是学堂在线上有字幕，还有一些问题，一些名词的解释，和源代码</li>
-<li>虽然这些代码都不是我自己想出来的，但是我都是一个字一个字敲出来的，绝对没有Ctrl c + Ctrl v，这些名词解释也是一个字一个字敲出来的，因为我觉得自己敲上一遍可能记得牢固一点吧。</li>
-</ul>
-</li>
-</ul>
-
+        
       
 
       
@@ -475,6 +446,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C＋＋</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -530,12 +512,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h2><p>友元是一种定义在类外部的普通函数或类，但它需要在类体内进行说明，为了与该类的成员函数加以区别，在说明时前面加以关键字friend。友元不是成员函数，但是它可以访问类中的私有成员。</p>
-<p>下面贴上我看视频跟着动手写的代码<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//友元 定义 友元是单向的，友元可以让你在效率和安全性之间有一个简单选择</span></span><br><span class="line"><span class="comment">//友元类如下所示</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">class A &#123;</span></span><br><span class="line"><span class="comment">  friend class B; </span></span><br><span class="line"><span class="comment">  public:</span></span><br><span class="line"><span class="comment">    void display() &#123;</span></span><br><span class="line"><span class="comment">      cout &lt;&lt; x &lt;&lt; endl;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">  </span></span><br><span class="line"><span class="comment">  private:</span></span><br><span class="line"><span class="comment">   int x;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">class B &#123;</span></span><br><span class="line"><span class="comment">  public:</span></span><br><span class="line"><span class="comment">    void set(int i);</span></span><br><span class="line"><span class="comment">    void display();</span></span><br><span class="line"><span class="comment">  </span></span><br><span class="line"><span class="comment">  private:</span></span><br><span class="line"><span class="comment">    A a;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">void B::set(int i) &#123;</span></span><br><span class="line"><span class="comment">    a.x = i;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">void B::display() &#123;</span></span><br><span class="line"><span class="comment">    a.display();</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> &#123;</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    Point(<span class="keyword">int</span> x = <span class="number">0</span>, <span class="keyword">int</span> y = <span class="number">0</span>) :</span><br><span class="line">      x(x), y(y) &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getX</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> x;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getY</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> y;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//friend float dist(Point&amp; a, Point&amp; b);</span></span><br><span class="line">    <span class="function"><span class="keyword">friend</span> <span class="keyword">float</span> <span class="title">dist</span><span class="params">(Point <span class="keyword">const</span> &amp;a, Point <span class="keyword">const</span> &amp;b)</span></span>;      <span class="comment">//常引用，这样既可以访问私有成员，又不会对私有成员的安全性有任何破坏</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> x, y;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//这里直接传整个类过来而不是值传递，是考虑到效率的问题，如果只是单一的传值，就需要调用的Point类的get函数（返回），这个开销是比较的</span></span><br><span class="line"><span class="comment">//有的类中这个友元需要调用的参数比较多的时候，直接把类传过来就比较方便，如果参数比较少最好还是少用友元，毕竟会破坏安全性</span></span><br><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">dist</span><span class="params">(<span class="keyword">const</span> Point &amp;a, <span class="keyword">const</span> Point &amp;b)</span> </span>&#123;        <span class="comment">//(Point &amp;a, Point &amp;b)</span></span><br><span class="line">  <span class="keyword">double</span> x = a.x - b.x;</span><br><span class="line">  <span class="keyword">double</span> y = a.y - b.y;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">static_cast</span>&lt;<span class="keyword">float</span>&gt;(<span class="built_in">sqrt</span>(x * x + y * y));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Point p1(1, 1), p2(4, 5);</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"The distance is: "</span>;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; dist(p1, p2) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="const关键字"><a href="#const关键字" class="headerlink" title="const关键字"></a>const关键字</h2><p>它限定一个变量不允许被改变，产生静态作用。使用const在一定程度上可以提高程序的安全性和可靠性。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//常函数的例子类R，常函数就是一种保证，用const修饰的函数保证在类中不去修改参数的值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//常引用见上例</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">R</span> &#123;</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    R(<span class="keyword">int</span> r1, <span class="keyword">int</span> r2) :</span><br><span class="line">      r1(r1), r2(r2) &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> r1, r2;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 常成员的例子类A</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line">  <span class="keyword">public</span>: </span><br><span class="line">    A(<span class="keyword">int</span> i);</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> a;        <span class="comment">//对象的成员</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> b;     <span class="comment">//静态常成员，整个类的成员，可以再类的任何位置访问</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> R::print() &#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; r1 &lt;&lt; <span class="string">":"</span> &lt;&lt; r2 &lt;&lt; <span class="built_in">endl</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果你明确的知道在这个类里的参数不会被修改，你可以只保留带有const函数的print，即使定义时没定义为const，他也会自动调用const的print</span></span><br><span class="line"><span class="keyword">void</span> R::print() <span class="keyword">const</span> &#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; r1 &lt;&lt; <span class="string">":"</span> &lt;&lt; r2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> A::b = <span class="number">10</span>;</span><br><span class="line">A::A(<span class="keyword">int</span> i) : a(i) &#123;&#125;     <span class="comment">//这里的a已经是常成员了，所以构造函数里不允许再对a进行赋值，只能通过这种方式对a进行初始化</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> A::print() &#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="string">":"</span> &lt;&lt; b &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">//常函数</span></span><br><span class="line">  <span class="function">R <span class="title">a</span><span class="params">(<span class="number">5</span>, <span class="number">4</span>)</span></span>;</span><br><span class="line">  a.print();</span><br><span class="line">  <span class="function"><span class="keyword">const</span> R <span class="title">b</span><span class="params">(<span class="number">20</span>,<span class="number">52</span>)</span></span>;<span class="comment">//这里b的对象的值并不会改变，所以他将调用有const修饰的print函数</span></span><br><span class="line">  b.print();</span><br><span class="line">  <span class="comment">//常成员</span></span><br><span class="line">  A a1(100), a2(0);</span><br><span class="line">  a1.print();</span><br><span class="line">  a2.print();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<p>我们宿舍晚上一般比较吵，不能静下心来看书，我只好继续看视频学习C++。</p>
-
+<p>下面贴上我看视频跟着动手写的代码<br></p>
+        
       
 
       
@@ -543,6 +521,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C＋＋</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -610,25 +599,8 @@
 </ul>
 <p>对于C阵营的编程我是非常喜欢的，我觉得C的发展前景特别好虽然说Java的用户群体最大的，但是毫不影响我对C的爱。对于C可能有很多都是道听途说的，C语言是很接近底层的语言，而且它的响应速度应该是其他语言比不上的。C#就是我们老师说的没必要的上的课，但是我觉得这个课让我觉得开发Windows应用很简单，直接拖过来就完事了，虽然现在桌面应用不像从前了。然后我课外自学C++这门面向对象的语言，自己看视频，跟着敲一些的代码，由于之前学过Java学习起来并不是那么困难，但是也不简单。C++虽然能做的事情非常多，效率也非常高，但是它的复杂度也是很高的。</p>
 <ul>
-<li>Java/JavaWeb </li>
-</ul>
-<p>学习这两门课的时候正值我大学最颓废的时候，每天都是死气成成的，就知道上完课回来打游戏，我这个人虽然很喜欢玩游戏，但是我基本上不逃课。得幸于此，这门课我还是学到一点东西的。其实要学东西，就是做项目，当时那个Java实训那两个星期实在是让我学习到了很多东西，带我们实训的老师（居然是学校从外面请的）讲的很不错，他会给你布置一点一点的小任务，最后这些任务组合起来就可以达到我当时做的项目。</p>
-<ul>
-<li>HTML/CSS/JS </li>
-</ul>
-<p>大一在社团的时候每个星期抽一个晚自习上一次课，布置任务，限时完成，最后就是让我们利用HTML和CSS进行仿站作为进入社团的考核。不吹牛皮，我当时是写的最好的，仿的最像的（骄傲）。但是进入社团后的一段时间，没人再给我们任务，没有人督促我们学习，慢慢到了大二，我的颓废期，我被辞退了。我心甘情愿接受这样的教训。后面一次机会我得知我的高中同学已经在外面找到一份前端的工作，我听他说他的工作很简单，就是每天花两个小时想一下怎么实现然后从开源的UI上扒相应的模块。我心动了，向他请教。然后他给我了一份当时他做的项目，和他使用框架之一————amaze UI（妹子UI）。我凭借当初的一点回忆还看了点文档终于明白了他说的工作很轻松是什么。但是这样却没有任何发展前景，所以他辞职了。</p>
-<h2 id="发展目标"><a href="#发展目标" class="headerlink" title="发展目标"></a>发展目标</h2><p>现在我已经大三了，我们专业大四就没有课了，我们就要出去闯社会了。我不确定我这样水平能找到什么样的工作，但是我还是想利用这大学的黄昏为之后的社会道路铺上几块砖，可能有点晚，但是还是想拼尽全力，去努力一把。我一直是个没什么理想的人，我父母对我的期望也就是以后能找到个可以混口饭吃的，不至于饿死。</p>
-<ul>
-<li>提升自己 </li>
-</ul>
-<p>最后这个学期我必须要做出选择了C还是Java，必须提升其中一门语言的深度。</p>
-<ul>
-<li>准备招聘</li>
-</ul>
-<p>看到很多人说企业面试笔试会考到算法、数据结构，所以我准备了两本书Anany Levitin的《算法设计与分析基础》和面试神器《剑指Offer》，其中算法设计分析这本书也准备把它作为这个学期算法课的课本。</p>
-<hr>
-<p>我已经浪费了很多时间，真的要珍惜最后的机会。战吧！！！</p>
-
+<li>Java/JavaWeb</li></ul>
+        
       
 
       
@@ -636,6 +608,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -704,50 +687,8 @@
 </li>
 </ul>
 <p>通过这个命令来安装cnpm<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cnpm -v</span><br></pre></td></tr></table></figure></p>
-<p>这个命令可以检验你的cnpm是否也安装成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
-<p>执行这个命令就开始安装hexo<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo -v</span><br></pre></td></tr></table></figure></p>
-<p>验证hexo是否安装成功，不要觉得麻烦，当你真正搭建好博客时，那种成就感我们程序猿应该深有体会。</p>
-<ul>
-<li><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git</a> 这个是我之前没有安装的，当我开始往github上推我的hexo时，我发现我居然有个git命令不能执行导致我无法推送（尽管这不是唯一的问题）。之后的一系列命令行可以在这个git bash执行。</li>
-<li>自己选择一个盘符，建立一个文件夹，并通过gitbash跳转到这个目录下。</li>
-</ul>
-<h2 id="开始搭建"><a href="#开始搭建" class="headerlink" title="开始搭建"></a>开始搭建</h2><ul>
-<li>下载hexo框架<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>开始下载的hexo框架<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo -s</span><br></pre></td></tr></table></figure></p>
-<p>我们就可以看到生成博客了，在浏览器输入它给的本地网址</p>
-<ul>
-<li>部署到github 登陆github新建一个仓库，仓库名格式是：你的账号.github.io 之后创建，github会给你你一个网址，这个网址一定要记好（拿个记事本复制下来），这个就是以后我们hexo博客的网址。接下来我们需要到命令行下执行命令<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>接下来我们需要设置一个很关键的文件_config.yml,可以通过记事本打开，找到最下面的（记得：后面一定要加一个空格，没有的就自己创建）</p>
-<pre><code>deploy:
-    type: git
-    repo: 刚才的网址
-    branch: master
-</code></pre><p>接下来我们就可以回到命令行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure></p>
-<p>这样就开始把我们的hexo部署到github上了，中间会让你输入github的账号和密码，等待一段时间后我们就可以通过刚才的网址打开我们的博客了</p>
-<h2 id="拦路虎"><a href="#拦路虎" class="headerlink" title="拦路虎"></a>拦路虎</h2><ul>
-<li>往github上部署hexo的时候部署失败，但是我没有截图很可惜，简单描述下，就是命令行出现了几个错误报告</li>
-</ul>
-<p>git失败</p>
-<p>解决方案：安装gitbash</p>
-<p>npm WARN deprecated <a href="mailto:minimatch@2.0.10" target="_blank" rel="noopener">minimatch@2.0.10</a>: Please update to minimatch 3.0.2 or higher to avoid a RegExp DoS issue</p>
-<p>解决方案：我把npm的版本调低，没用，但是第二天重新部署hexo，一次成功了</p>
-<ul>
-<li>打不开github</li>
-</ul>
-<p>github响应时间过长/拒绝了你的访问</p>
-<p>解决方案：打开C:\Windows\System32\drivers\etc\hosts文件在最后添加192.30.253.113 github.com</p>
-<ul>
-<li>没有hosts文件</li>
-</ul>
-<p>C:\Windows\System32\drivers\etc没有hosts文件</p>
-<p>解决方案：在桌面新建一个记事本，重命名为hosts，去掉后缀名，剪切到路径下，并打开属性-&gt;安全给它赋予最高权限</p>
-<p>这些就是我所遇到的问题，经历一天的努力终于能通过网址访问博客了。</p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>CodeSheep在视频中还是说的非常清楚的，但是由于自身的一些因素没能很快的解决这些问题，所幸博客最终搭建完成</p>
-
+<p>这个命令可以检验你的cnpm是否也安装成功<br></p>
+        
       
 
       
@@ -755,6 +696,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -894,7 +846,7 @@
 		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,
-		showTags: false
+		showTags: true
 	}
 </script>
 
@@ -954,6 +906,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">C ++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C＋＋</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>

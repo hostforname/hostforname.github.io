@@ -9,13 +9,14 @@
   <title>我的Hexo搭建过程 | 郑志豪的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="我是最近看了B站up主CodeSheep的视频一步一步搭建的这个Hexo博客，现在我简单介绍一下Hexo博客搭建的过程和遇到的一些问题还有我解决的办法，希望对其他想要搭建博客的萌新们有一点小小的帮助，如有不对的地方希望大佬见谅。  准备工作因为我用的是Windows7的系统，所以我就只介绍Win7的搭建过程。  nodejs 安装完成后可以通过cmd命令1$ node -v   来查看nodejs">
+<meta name="keywords" content="随笔">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我的Hexo搭建过程">
 <meta property="og:url" content="http://yoursite.com/2019/02/28/我的Hexo搭建过程/index.html">
 <meta property="og:site_name" content="郑志豪的个人博客">
 <meta property="og:description" content="我是最近看了B站up主CodeSheep的视频一步一步搭建的这个Hexo博客，现在我简单介绍一下Hexo博客搭建的过程和遇到的一些问题还有我解决的办法，希望对其他想要搭建博客的萌新们有一点小小的帮助，如有不对的地方希望大佬见谅。  准备工作因为我用的是Windows7的系统，所以我就只介绍Win7的搭建过程。  nodejs 安装完成后可以通过cmd命令1$ node -v   来查看nodejs">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-01T14:55:14.289Z">
+<meta property="og:updated_time" content="2019-03-24T07:36:19.703Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我的Hexo搭建过程">
 <meta name="twitter:description" content="我是最近看了B站up主CodeSheep的视频一步一步搭建的这个Hexo博客，现在我简单介绍一下Hexo博客搭建的过程和遇到的一些问题还有我解决的办法，希望对其他想要搭建博客的萌新们有一点小小的帮助，如有不对的地方希望大佬见谅。  准备工作因为我用的是Windows7的系统，所以我就只介绍Win7的搭建过程。  nodejs 安装完成后可以通过cmd命令1$ node -v   来查看nodejs">
@@ -58,6 +59,10 @@
 			<ul>
 			
 				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/C＋＋/">C++</a></li>
+	        
+				<li><a href="/tags/算法/">算法</a></li>
 	        
 				<li><a href="/tags/随笔/">随笔</a></li>
 	        
@@ -117,6 +122,10 @@
 			
 				
 			
+				
+			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -134,12 +143,16 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 25%"><a href="/tags/C＋＋/">C++</a></li>
+		        
+					<li style="width: 25%"><a href="/tags/算法/">算法</a></li>
+		        
+					<li style="width: 25%"><a href="/tags/随笔/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -188,7 +201,7 @@
 </li>
 </ul>
 <p>通过这个命令来安装cnpm<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cnpm -v</span><br></pre></td></tr></table></figure></p>
-<p>这个命令可以检验你的cnpm是否也安装成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
+<p>这个命令可以检验你的cnpm是否也安装成功<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
 <p>执行这个命令就开始安装hexo<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo -v</span><br></pre></td></tr></table></figure></p>
 <p>验证hexo是否安装成功，不要觉得麻烦，当你真正搭建好博客时，那种成就感我们程序猿应该深有体会。</p>
 <ul>
@@ -260,6 +273,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -419,7 +443,7 @@
 		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,
-		showTags: false
+		showTags: true
 	}
 </script>
 
@@ -479,6 +503,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">C ++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C＋＋</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
