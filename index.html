@@ -167,6 +167,203 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-【C-】群体数据之队列类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/31/【C-】群体数据之队列类/">【C++】群体数据之队列类</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/31/【C-】群体数据之队列类/" class="archive-article-date">
+  	<time datetime="2019-03-31T11:30:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>队列和栈一样是老师说的最多的，只不过队列是先进先出。队列是只能向一端添加元素，从另一端删除元素的线性群体。<br>队列的基本状态：</p>
+<ul>
+<li>队空</li>
+<li>队满</li>
+<li>一般状态<br>队列还有一个很好玩的地方就是循环队列，就是首尾相连。元素出队时，后继元素不移动，每当队尾达到数组的最后一个元素时，便回到数组开头。<br>队列的基本操作：</li>
+<li>入队</li>
+<li>出队</li>
+<li>清空队列</li>
+<li>提取队列长度</li>
+<li>返回队首元素</li>
+<li>检测队列状态<br>下面一个就是简单观察队列程序：<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Queue.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span> a[] = &#123; <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span> &#125;;</span><br><span class="line">	Queue&lt;<span class="keyword">char</span>&gt; q;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">5</span>; j++) &#123;</span><br><span class="line">		q.insert(a[j]);		<span class="comment">//把数据存入队列中</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> i = q.getLength();			<span class="comment">//返回现在队列的长度</span></span><br><span class="line">	<span class="keyword">char</span> b = q.getFront();			<span class="comment">//返回现在队头的数据</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">"  "</span> &lt;&lt; b &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	q.remove();		<span class="comment">//队头删除一个元素</span></span><br><span class="line">	i = q.getLength();</span><br><span class="line">	b = q.getFront();		</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">"  "</span> &lt;&lt; b &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	q.insert(<span class="string">'e'</span>);		<span class="comment">//队尾插入一个元素</span></span><br><span class="line">	i = q.getLength();</span><br><span class="line">	b = q.getFront();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">"  "</span> &lt;&lt; b &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>下面是队列的模板类：<br></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C＋＋</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">群体数据</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">类模板</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">队列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/31/【C-】群体数据之队列类/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-【C-】群体数据之栈类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/31/【C-】群体数据之栈类/">【C++】群体数据之栈类</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/31/【C-】群体数据之栈类/" class="archive-article-date">
+  	<time datetime="2019-03-31T10:43:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>栈应该是老师经常说的一个东西了，就是先进后出。<br>栈是智能从一端访问的线性群体，可以访问的这一端称栈顶，另一端称栈底<br>栈的基本状态：</p>
+<ul>
+<li>栈空</li>
+<li>栈满</li>
+<li>一般状态<br>栈的基本操作：</li>
+<li>初始化</li>
+<li>入栈</li>
+<li>出栈</li>
+<li>清空栈</li>
+<li>访问栈顶元素</li>
+<li>检测栈的状态（满、空）<br>栈的类模板如下：<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> STACK_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STACK_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cassert&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">int</span> <span class="title">SIZE</span> = 50&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">Stack</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	T <span class="built_in">list</span>[SIZE];</span><br><span class="line">	<span class="keyword">int</span> top;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Stack();</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">const</span> T &amp;item)</span></span>;</span><br><span class="line">	<span class="function">T <span class="title">pop</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">const</span> T &amp;<span class="title">peek</span><span class="params">()</span> <span class="keyword">const</span></span>;		</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">()</span> <span class="keyword">const</span></span>;		<span class="comment">//判断栈是否满</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">isFull</span><span class="params">()</span> <span class="keyword">const</span></span>;		<span class="comment">//判断栈是否空</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//模板的实现</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">int</span> <span class="title">SIZE</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">Stack</span>&lt;T, SIZE&gt; :</span>:Stack() : top(<span class="number">-1</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">int</span> <span class="title">SIZE</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">Stack</span>&lt;T, SIZE&gt; :</span>:push(<span class="keyword">const</span> T &amp;item) &#123;</span><br><span class="line">	assert(!isFull());</span><br><span class="line">	<span class="built_in">list</span>[++top] = item;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">int</span> <span class="title">SIZE</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span> <span class="title">Stack</span>&lt;T, SIZE&gt; :</span>: pop() &#123;</span><br><span class="line">	assert(!isEmpty());</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">list</span>[top--];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">int</span> <span class="title">SIZE</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">const</span> <span class="title">T</span> &amp;<span class="title">Stack</span>&lt;T, SIZE&gt; :</span>: peek() <span class="keyword">const</span> &#123;</span><br><span class="line">	assert(!isEmpty());</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">list</span>[top];		<span class="comment">//返回栈顶元素</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">int</span> <span class="title">SIZE</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">Stack</span>&lt;T, SIZE&gt; :</span>: isEmpty() <span class="keyword">const</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> top == <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">int</span> <span class="title">SIZE</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">Stack</span>&lt;T, SIZE&gt; :</span>:isFull() <span class="keyword">const</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> top == SIZE - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">int</span> <span class="title">SIZE</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">Stack</span>&lt;T, SIZE&gt; :</span>:clear() &#123;</span><br><span class="line">	top = <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// !STACK_H</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C＋＋</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">栈</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">群体数据</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">类模板</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/31/【C-】群体数据之栈类/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-【C-】群体数据之链表类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -199,7 +396,10 @@
 <li>查找结点</li>
 <li>删除结点</li>
 <li>遍历链表</li>
-<li>清空链表<br>下面就放上例子：</li></ul></li></ul>
+<li>清空链表</li>
+</ul>
+</li>
+<li>线性链表存储空间可以不连续，存储顺序和逻辑顺序也可以不一致，插入和删除只需要改变指向，不需要移动元素<br>下面就放上例子：</li></ul>
         
       
 
@@ -214,6 +414,18 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C＋＋</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">群体数据</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">类模板</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">链表</a>
         		</li>
       		
 		</ul>
@@ -296,6 +508,22 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C＋＋</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">群体数据</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">类模板</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">函数模板</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数组</a>
         		</li>
       		
 		</ul>
@@ -452,6 +680,26 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C＋＋</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">override</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">final</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">抽象类</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">struct</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">class</a>
         		</li>
       		
 		</ul>
@@ -821,168 +1069,10 @@
 
 
   
-    <article id="post-我的Hexo搭建过程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/28/我的Hexo搭建过程/">我的Hexo搭建过程</a>
-    </h1>
-  
-
-        
-        <a href="/2019/02/28/我的Hexo搭建过程/" class="archive-article-date">
-  	<time datetime="2019-02-28T14:08:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>我是最近看了B站up主<a href="https://space.bilibili.com/384068749?from=search&amp;seid=13150293354807841806" target="_blank" rel="noopener">CodeSheep</a>的视频一步一步搭建的这个Hexo博客，现在我简单介绍一下Hexo博客搭建的过程和遇到的一些问题还有我解决的办法，希望对其他想要搭建博客的萌新们有一点小小的帮助，如有不对的地方希望大佬见谅。</p>
-<hr>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>因为我用的是Windows7的系统，所以我就只介绍Win7的搭建过程。</p>
-<ul>
-<li><a href="https://nodejs.org/en/" target="_blank" rel="noopener">nodejs</a> 安装完成后可以通过cmd命令<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node -v</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>来查看nodejs是否安装好了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm -v</span><br></pre></td></tr></table></figure></p>
-<p>来查看npm是否也安装好了</p>
-<ul>
-<li>hexo 通过命令行来安装，需要npm来安装，但是由于npm下载太慢我们需要安装cnpm，再对国内的镜像源进行下载<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>通过这个命令来安装cnpm<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cnpm -v</span><br></pre></td></tr></table></figure></p>
-<p>这个命令可以检验你的cnpm是否也安装成功<br></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/02/28/我的Hexo搭建过程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-我的第一篇博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/26/我的第一篇博客/">我的第一篇博客文章</a>
-    </h1>
-  
-
-        
-        <a href="/2019/02/26/我的第一篇博客/" class="archive-article-date">
-  	<time datetime="2019-02-26T10:14:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<h3 id="序"><a href="#序" class="headerlink" title="序"></a>序</h3><p>时间过得真快啊，转眼间我已经是计算机专业大三的一名学生了，这大学三年有很多时间都被我所荒废，专业知识我也很用心的去学，但我知道这样还是不够支撑我成为一名程序猿，所以我决定不在这样浑浑噩噩的过日子。</p>
-<hr>
-<h3 id="第一"><a href="#第一" class="headerlink" title="第一"></a>第一</h3><p>我是很讨厌定下目标，我总是觉得计划赶不上变化，人总是会被各种各样的事物所左右。既然要寻求改变，不如就从现在开始，订立一个小目标，例如：</p>
-<ul>
-<li>调试代码遇到的一些问题</li>
-<li>看书的一些感想等等</li>
-</ul>
-<hr>
-<h3 id="第二"><a href="#第二" class="headerlink" title="第二"></a>第二</h3><p>我的首要目的还是想通过这样一种强迫自己学习的方法使自己变得优秀，不断改进自身的一些习惯，并且勉励自己。作为一名刚入坑博客的小白，我会在以后的日子里不断完善博客，学习技术。</p>
-<hr>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>继续学习吧！我觉得我的选择不会有错，加油！</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/02/26/我的第一篇博客/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -1080,11 +1170,59 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">群体数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">类模板</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">override</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">final</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">抽象类</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">struct</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">class</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">函数模板</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
             
             <div class="clearfix"></div>
