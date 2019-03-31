@@ -167,6 +167,174 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-【C-】群体数据之链表类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/31/【C-】群体数据之链表类/">【C++】群体数据之链表类</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/31/【C-】群体数据之链表类/" class="archive-article-date">
+  	<time datetime="2019-03-31T10:14:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="链表类"><a href="#链表类" class="headerlink" title="链表类"></a>链表类</h2><ul>
+<li>链表是一种动态数据结构，可以用表示顺序访问的线性群体</li>
+<li>链表是由系列几点组成的，结点可以在运行时动态生成</li>
+<li>每一个结点包括数据域和指向链表中下一个结点指针（即下一个结点的地址）。如果链表每个结点中只有一个指向后继结点的指针，则该链表称为单链表<br>链表有两个地方需要注意一下：</li>
+<li>链表结点的插入<br><img src="/2019/03/31/【C-】群体数据之链表类/链表插入.png" alt="链表插入"><br>这里一定要按照步骤进行插入，如果你直接顺序弄反了，你可能就找不到后面的数据了。</li>
+<li>链表结点的删除<br><img src="/2019/03/31/【C-】群体数据之链表类/链表结点的删除.png" alt="链表结点的删除"><br>只需要把被删除结点的前一个结点的指向被删除结点的下一个结点的数据。</li>
+<li>链表的基本操作<ul>
+<li>生成链表</li>
+<li>插入结点</li>
+<li>查找结点</li>
+<li>删除结点</li>
+<li>遍历链表</li>
+<li>清空链表<br>下面就放上例子：</li></ul></li></ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C＋＋</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/31/【C-】群体数据之链表类/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-【C-】模板与群体数据" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/31/【C-】模板与群体数据/">【C++】模板与群体数据</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/31/【C-】模板与群体数据/" class="archive-article-date">
+  	<time datetime="2019-03-31T09:03:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="函数模板与类模板"><a href="#函数模板与类模板" class="headerlink" title="函数模板与类模板"></a>函数模板与类模板</h2><h3 id="函数模板"><a href="#函数模板" class="headerlink" title="函数模板"></a>函数模板</h3><p><img src="/2019/03/31/【C-】模板与群体数据/template.png" alt="模板"><br>从上面的例子当中我们就可以看到模板的好处，可以帮助我们减少对数据处理方式相同但是数据类型不同的而导致的代码冗余。</p>
+<ul>
+<li>模板函数就是可以减少冗余，不用再写那么多的重载函数，它可以自动识别类型进行调用函数</li>
+<li>一个函数模板并非自动可以处理所有类型的数据</li>
+<li>只有能够进行函数模板中运算的类型，可以作为类型实参</li>
+<li>自定义的类或者类型，需要重载模板中的运算符，才能作为类型实参<br>例子：求一个数的绝对值和输出不同类型的数组<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt; </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//求绝对值的模板函数和输出不同类型的数组</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> S&gt;  <span class="comment">// typename有深度（https://blog.csdn.net/bug07250432/article/details/10150625），一般是class</span></span><br><span class="line"><span class="function">S <span class="title">abs</span> <span class="params">(S x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x &lt; <span class="number">0</span> ? -x : x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出数组的模板函数</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">outputArray</span> (<span class="title">const</span> <span class="title">T</span> *<span class="title">array</span>, <span class="title">int</span> <span class="title">count</span>) &#123;</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">array</span>[i] &lt;&lt; <span class="string">" "</span> ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n = <span class="number">-5</span>;</span><br><span class="line">    <span class="keyword">double</span> d = <span class="number">-5.5</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">abs</span>(n) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">abs</span>(d) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//不同类型的数组</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> A_COUNT = <span class="number">8</span>, B_COUNT = <span class="number">8</span>, C_COUNT = <span class="number">20</span>;</span><br><span class="line">    <span class="keyword">int</span> a[A_COUNT] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span> &#125;;</span><br><span class="line">    <span class="keyword">double</span> b[B_COUNT] = &#123; <span class="number">1.1</span>, <span class="number">2.2</span>, <span class="number">3.3</span>, <span class="number">4.4</span>, <span class="number">5.5</span>, <span class="number">6.6</span>, <span class="number">7.7</span>, <span class="number">8.8</span> &#125;;</span><br><span class="line">    <span class="keyword">char</span> c[C_COUNT] = <span class="string">"Welcome!"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//调用同一个函数名也能实现不同类型的数组的输出</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">" a array contains: "</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    outputArray(a, A_COUNT);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">" b array contains: "</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    outputArray(b, B_COUNT);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">" c array contains: "</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    outputArray(c, C_COUNT);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>运行结果：<br></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C＋＋</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/31/【C-】模板与群体数据/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-【算法】棋盘覆盖问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -912,11 +1080,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>
