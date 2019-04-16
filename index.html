@@ -187,6 +187,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+        <h2 id="STL算法特点"><a href="#STL算法特点" class="headerlink" title="STL算法特点"></a>STL算法特点</h2><ul>
+<li>STL算法本身是一种函数模板<ul>
+<li>通过迭代器获得输入数据</li>
+<li>通过函数对象对数据进行处理</li>
+<li>通过迭代器将结果输出</li>
+</ul>
+</li>
+<li>STL算法是通用的，独立于具体的数据类型、容器类型</li>
+</ul>
+<h2 id="STL算法的分类"><a href="#STL算法的分类" class="headerlink" title="STL算法的分类"></a>STL算法的分类</h2><h3 id="不可变序列算法"><a href="#不可变序列算法" class="headerlink" title="不可变序列算法"></a>不可变序列算法</h3><ul>
+<li>不直接修改所操作的容器内容的算法</li>
+<li>用于查找指定元素、比较两个序列是否相等、对元素进行计数等<br>查找[first,last]区间内pred(x)为真的首个元素<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">template&lt;class InputIterator, class UnaryPredicate&gt;</span><br><span class="line">InputIterator find_if(InputIterator first, InputIterator last, UnaryPredicate pred);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="可变序列算法"><a href="#可变序列算法" class="headerlink" title="可变序列算法"></a>可变序列算法</h3><ul>
+<li>可以修改它们所操作的容器对象</li>
+<li>包括对序列进行复制、删除、替换、倒序、旋转、交换、分割、去重、填充、洗牌的算法及生成一个序列的算法<br>将[first,last]区间内的元素全部改写为x</li></ul>
         
       
 
@@ -195,6 +212,25 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C＋＋</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">STL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">STL算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -249,6 +285,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+        <h1 id="函数对象"><a href="#函数对象" class="headerlink" title="函数对象"></a>函数对象</h1><ul>
+<li>一个行为类似函数的对象</li>
+<li>可以没有参数，也可以带有若干参数</li>
+<li>其功能是获取一个值，或者改变操作的状态</li>
+</ul>
+<h2 id="函数对象概念图"><a href="#函数对象概念图" class="headerlink" title="函数对象概念图"></a>函数对象概念图</h2><p><img src="/2019/04/15/【C-】STL的基本组件——函数对象/函数对象概念图.png" alt="函数对象概念图"><br></p>
         
       
 
@@ -257,6 +299,41 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C＋＋</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">STL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">函数对象</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">functional</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">绑定适配器</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">组合适配器</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">成员函数适配器</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -802,6 +879,10 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">函数对象</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">容器</a>
         		</li>
       		 
@@ -811,10 +892,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">标准模板库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">函数对象</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -1261,6 +1338,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">函数对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">functional</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">绑定适配器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">组合适配器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">成员函数适配器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">容器</a>
               </li>
              
@@ -1293,6 +1390,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">泛型编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">标准模板库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -1302,22 +1411,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">类模板</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">泛型编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">标准模板库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">函数对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1346,6 +1439,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Apache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">STL算法</a>
               </li>
              
               <li class="article-tag-list-item">
