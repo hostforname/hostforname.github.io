@@ -28,7 +28,8 @@
 <meta property="og:image" content="http://yoursite.com/2019/04/06/【数据库】phpMyAdmin入坑指南/myadmin2.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/06/【数据库】phpMyAdmin入坑指南/myadmin3.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/06/【数据库】phpMyAdmin入坑指南/myadmin4.png">
-<meta property="og:updated_time" content="2019-04-06T15:18:07.908Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/06/【数据库】phpMyAdmin入坑指南/数据库错误.png">
+<meta property="og:updated_time" content="2019-04-20T03:19:40.882Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【数据库】phpMyAdmin入坑指南">
 <meta name="twitter:description" content="最近准备要学习Java SSM框架，其中有一部分涉及到数据库，而我对数据库并不熟悉，于是搜了一下，选择了phpMyAdmin作为我的数据库管理工具，以方便我管理数据库。但是在环境搭建的时候我也遇到了不小的困难，于是用这篇博客记录下我的搭建过程以及爬过的坑。 准备工作安装软件下载网址：  Apache：https://www.apachehaus.com/cgi-bin/download.plx">
@@ -214,12 +215,14 @@
 <p><strong>第二步：安装PHP</strong><br>1.依然是解压压缩包，解压到和刚才的Apache24同一级目录下，并把文件夹重命名为php-7.0.33<br>2.找到php-7.0.33目录下的php.ini-developmen文件，复制重命名为php.ini，然后用记事本打开并作如下修改：<br>a.在exit下添加php解压的位置<br><img src="/2019/04/06/【数据库】phpMyAdmin入坑指南/php配置2.png" alt="php配置1"><br>b.删除这两处前面的注释<br><img src="/2019/04/06/【数据库】phpMyAdmin入坑指南/php配置1.png" alt="php配置2"><br>3.Apache服务器的默认目标目录是Apache24/htdocs,我们想测试PHP是否配置成功，于是可以到这个目录下创建一个test.php的文件输入以下代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>	</span><br><span class="line">	phpinfo();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>然后在浏览器中输入localhost/test.php如果配置没有问题的话，会显示PHP集成关系图<br><img src="/2019/04/06/【数据库】phpMyAdmin入坑指南/php2.png" alt="php2"></p>
 <p><strong>第三步：安装MySQL</strong><br>1.因为官网下载的msi文件，所以只需要根据网上的安装教程安装就可以了（安装的时候我没有填数据库的密码）</p>
-<p><strong>第四步：安装phpMyAdmin</strong><br>1.解压到Apache24/htdocs文件夹下，重命名为phpmyadmin<br>2.用记事本打开phpmyadmin/libraries/下的config.default/php文件，并做如下修改：<br>a.设置以后访问phpMyAdmin时输入的地址<br><img src="/2019/04/06/【数据库】phpMyAdmin入坑指南/myadmin1.png" alt="myadmin"><br>b.设置短语密码<br><img src="/2019/04/06/【数据库】phpMyAdmin入坑指南/myadmin2.png" alt="myadmin2"><br>c.设置登陆用户名密码(这个似乎要与MySQL的数据库用户密码一致)<br><img src="/2019/04/06/【数据库】phpMyAdmin入坑指南/myadmin3.png" alt="myadmin3"><br>d.设置允许密码为空<br><img src="/2019/04/06/【数据库】phpMyAdmin入坑指南/myadmin4.png" alt="myadmin4"><br>3.用浏览器访问localhost/phpmyadmin/index.php就会出现登陆界面，输入之前设置的用户名密码就可以进入phpMyAdmin中进行管理数据库了</p>
+<p><strong>第四步：安装phpMyAdmin</strong><br>1.解压到Apache24/htdocs文件夹下，重命名为phpmyadmin<br>2.用记事本打开phpmyadmin/libraries/下的config.default.php文件，并做如下修改：<br>a.设置以后访问phpMyAdmin时输入的地址<br><img src="/2019/04/06/【数据库】phpMyAdmin入坑指南/myadmin1.png" alt="myadmin"><br>b.设置短语密码<br><img src="/2019/04/06/【数据库】phpMyAdmin入坑指南/myadmin2.png" alt="myadmin2"><br>c.设置登陆用户名密码(这个似乎要与MySQL的数据库用户密码一致)<br><img src="/2019/04/06/【数据库】phpMyAdmin入坑指南/myadmin3.png" alt="myadmin3"><br>d.设置允许密码为空<br><img src="/2019/04/06/【数据库】phpMyAdmin入坑指南/myadmin4.png" alt="myadmin4"><br>3.用浏览器访问localhost/phpmyadmin/index.php就会出现登陆界面，输入之前设置的用户名密码就可以进入phpMyAdmin中进行管理数据库了</p>
 <h2 id="配置问题"><a href="#配置问题" class="headerlink" title="配置问题"></a>配置问题</h2><h3 id="连接不到MySQL服务器"><a href="#连接不到MySQL服务器" class="headerlink" title="连接不到MySQL服务器"></a>连接不到MySQL服务器</h3><p><strong>错误提示：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqli_real_connect(): The server requested authentication method unknown to the client [caching_sha2_password]</span><br><span class="line">mysqli_real_connect(): (HY000/2054): The server requested authentication method unknown to the client</span><br></pre></td></tr></table></figure></p>
 <p><strong>问题原因：</strong><br>因为MySQL8.0启用了新的加密方式<br>解决方案：<br>1.我之前还安装了一个MySQL5.0的数据库，好像他们两个冲突了，于是把5.0给卸载了，没有解决问题<br>2.于是找攻略，进入mysql命令行，在MySQL的安装目录下bin目录下打开命令行输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure></p>
 <p>输入密码进入mysql<br>然后输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER USER <span class="string">'root'</span>@<span class="string">'127.0.0.1'</span> IDENTIFIED WITH mysql_native_password BY <span class="string">'你的密码'</span>;</span><br></pre></td></tr></table></figure></p>
 <p>成功了就退出<br>然后在计算机中菜单栏中选择查看，打开文件夹和搜索选项，点击查看，高级设置里显示隐藏的文件，这样我们就可以在C盘中找到ProgramData/MySQL/MySQL Server/my.ini配置文件，并打开，用ctrl+f找到default_authentication_plugin=，把=后面的修改为 mysql_native_password。于是解决问题。</p>
 <h3 id="刷新访问地址还是报错"><a href="#刷新访问地址还是报错" class="headerlink" title="刷新访问地址还是报错"></a>刷新访问地址还是报错</h3><p><strong>问题原因：</strong><br>没有重启Apache服务器<br>解决方案：<br>每一次更改配置文件，都要记的重启Apacat服务器，MySQL</p>
+<h3 id="打不开MySQL8的数据库"><a href="#打不开MySQL8的数据库" class="headerlink" title="打不开MySQL8的数据库"></a>打不开MySQL8的数据库</h3><p><strong>问题时间：</strong><br>2019-4-20 星期六 10:30<br><strong>问题原因：</strong><br>无法使用之前MySQL8我自己的账号密码登陆数据库，我以为是我把密码改了，于是开始试密码，然后用某一个密码进去了，但是我之前的数据都没了<br>试了很多办法也没找到原因，于是开始重新创建新的数据库，数据库创建的SQL语句还是上次创建的，执行命令发现报<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1286-Unknown storage engine &apos;InnoDB&apos;</span><br></pre></td></tr></table></figure></p>
+<p><strong>解决方案：</strong><br>于是开始找攻略，我先启动命令行进入mysql（这时候用的账号密码还是我试出来的那一个），用show engines查询我的引擎启动了没有，发现没有启动，于是我找到my.ini文件，查找innodb，发现是启动的。这时候我意识到可能我的MySQL启动错了<br>然后打开服务，然后发现了这个（这个是我已经修改好了的，修改之前MySQL80是网络服务，而且启动不了，这个mysqlzt是自动启动的）<br><img src="/2019/04/06/【数据库】phpMyAdmin入坑指南/数据库错误.png" alt="数据库错误"><br>我的电脑里居然还有一个MySQL，查看mysqlzt属性时，发现它使用的my.ini是在我之前安装的禅道上的，这使我明白了为什么我的数据库账户登录不上，为什么报错了。于是马上禁用这个服务，把MySQL改为本地系统服务，启动，于是乎成功登陆了我的数据库，看到了我的数据表。</p>
 <h2 id="感悟"><a href="#感悟" class="headerlink" title="感悟"></a>感悟</h2><p>配置环境依旧是最折磨人的，很多人就在配置环境的过程中慢慢放弃了，我很庆幸我所遇到的问题我都坚持一遍一遍尝试解决了</p>
 
       
@@ -514,6 +517,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">容器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">关联容器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">函数对象</a>
               </li>
              
@@ -534,15 +545,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">容器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">关联容器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">顺序容器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">STL算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -566,18 +573,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">泛型编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">标准模板库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -590,7 +585,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
+                <a href="javascript:void(0)" class="js-tag color5">泛型编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">标准模板库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -618,7 +621,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">STL算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
