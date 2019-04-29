@@ -8,17 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>【周记】第17周总结 | 郑志豪的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="莹莹之火">
+  <meta name="description" content="SQLSQL是用于访问和处理数据库的标准的计算机语言  SQL指结构化查询语言 SQL使我们有能力访问数据库 SQL是一种ANSI(美国国家标准化组织)的标准计算机语言  注：SQL是这个星期自主学习的主要内容，学习了很小一部分，由于学习的比较零散，可能总结的比较乱，但是希望记录下来，作为以后的可能用到的笔记 常见的SQL语句git bash中进入mysql(已设置了环境变量)1$ winpty">
+<meta name="keywords" content="MySQL,周记,SQL语句,数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【周记】第17周总结">
 <meta property="og:url" content="http://yoursite.com/2019/04/28/【周记】第17周总结/index.html">
 <meta property="og:site_name" content="郑志豪的个人博客">
-<meta property="og:description" content="莹莹之火">
+<meta property="og:description" content="SQLSQL是用于访问和处理数据库的标准的计算机语言  SQL指结构化查询语言 SQL使我们有能力访问数据库 SQL是一种ANSI(美国国家标准化组织)的标准计算机语言  注：SQL是这个星期自主学习的主要内容，学习了很小一部分，由于学习的比较零散，可能总结的比较乱，但是希望记录下来，作为以后的可能用到的笔记 常见的SQL语句git bash中进入mysql(已设置了环境变量)1$ winpty">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-28T12:30:15.136Z">
+<meta property="og:updated_time" content="2019-04-29T17:10:00.225Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【周记】第17周总结">
-<meta name="twitter:description" content="莹莹之火">
+<meta name="twitter:description" content="SQLSQL是用于访问和处理数据库的标准的计算机语言  SQL指结构化查询语言 SQL使我们有能力访问数据库 SQL是一种ANSI(美国国家标准化组织)的标准计算机语言  注：SQL是这个星期自主学习的主要内容，学习了很小一部分，由于学习的比较零散，可能总结的比较乱，但是希望记录下来，作为以后的可能用到的笔记 常见的SQL语句git bash中进入mysql(已设置了环境变量)1$ winpty">
   
     <link rel="alternative" href="/atom.xml" title="郑志豪的个人博客" type="application/atom+xml">
   
@@ -192,7 +193,56 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><p>SQL是用于访问和处理数据库的标准的计算机语言</p>
+<ul>
+<li>SQL指结构化查询语言</li>
+<li>SQL使我们有能力访问数据库</li>
+<li>SQL是一种ANSI(美国国家标准化组织)的标准计算机语言</li>
+</ul>
+<p><strong>注：</strong>SQL是这个星期自主学习的主要内容，学习了很小一部分，由于学习的比较零散，可能总结的比较乱，但是希望记录下来，作为以后的可能用到的笔记</p>
+<h2 id="常见的SQL语句"><a href="#常见的SQL语句" class="headerlink" title="常见的SQL语句"></a>常见的SQL语句</h2><p>git bash中进入mysql(已设置了环境变量)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ winpty mysql -u root -p</span><br></pre></td></tr></table></figure></p>
+<p>1.查询所有数据库<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show databases;</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">| Database           |</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| o2o                |</span><br><span class="line">| performance_schema |</span><br><span class="line">| sakila             |</span><br><span class="line">| test               |</span><br><span class="line">| world              |</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">7 rows in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<p>2.进入某个数据库中<br><a id="more"></a><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use o2o;</span><br><span class="line">Database changed</span><br></pre></td></tr></table></figure></p>
+<p>3.查询表中所有记录<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from tb_area;</span><br><span class="line">+<span class="comment">---------+-----------+----------+-------------+----------------+</span></span><br><span class="line">| area_id | area_name | priority | create_time | last_edit_time |</span><br><span class="line">+<span class="comment">---------+-----------+----------+-------------+----------------+</span></span><br><span class="line">|       2 | 西苑      |        1 | NULL        | NULL           |</span><br><span class="line">|       3 | 东苑      |        2 | NULL        | NULL           |</span><br><span class="line">+<span class="comment">---------+-----------+----------+-------------+----------------+</span></span><br><span class="line">2 rows in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<p>4.通过某个字段的具体值为条件查找到这一条记录<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from tb_area where area_id='2';</span><br><span class="line">+<span class="comment">---------+-----------+----------+-------------+----------------+</span></span><br><span class="line">| area_id | area_name | priority | create_time | last_edit_time |</span><br><span class="line">+<span class="comment">---------+-----------+----------+-------------+----------------+</span></span><br><span class="line">|       2 | 西苑      |        1 | NULL        | NULL           |</span><br><span class="line">+<span class="comment">---------+-----------+----------+-------------+----------------+</span></span><br><span class="line">1 row in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<p>5.建立数据库<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create database test;</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>6.删除数据库<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; drop database test1;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>7.显示数据库里所有的表<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show tables;</span><br><span class="line">+<span class="comment">---------------------+</span></span><br><span class="line">| Tables_in_o2o       |</span><br><span class="line">+<span class="comment">---------------------+</span></span><br><span class="line">| tb_area             |</span><br><span class="line">| tb_head_line        |</span><br><span class="line">| tb_local_auth       |</span><br><span class="line">| tb_person_info      |</span><br><span class="line">| tb_product          |</span><br><span class="line">| tb_product_category |</span><br><span class="line">| tb_product_img      |</span><br><span class="line">| tb_shop             |</span><br><span class="line">| tb_shop_category    |</span><br><span class="line">| tb_wechat_auth      |</span><br><span class="line">+<span class="comment">---------------------+</span></span><br><span class="line">10 rows in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<p>8.创建表<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table student (</span><br><span class="line">    -&gt;  sid int(16),</span><br><span class="line">    -&gt;  sname varchar(20)</span><br><span class="line">    -&gt; );</span><br><span class="line">Query OK, 0 rows affected (0.06 sec)</span><br></pre></td></tr></table></figure></p>
+<p>9.查看创建好的表的数据库的结构（属性，属性类型，是否可以为空，主键信息，默认值，其他等）<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; desc student;</span><br><span class="line">+<span class="comment">-------+-------------+------+-----+---------+-------+</span></span><br><span class="line">| Field | Type        | Null | Key | Default | Extra |</span><br><span class="line">+<span class="comment">-------+-------------+------+-----+---------+-------+</span></span><br><span class="line">| sid   | int(16)     | YES  |     | NULL    |       |</span><br><span class="line">| sname | varchar(20) | YES  |     | NULL    |       |</span><br><span class="line">+<span class="comment">-------+-------------+------+-----+---------+-------+</span></span><br><span class="line">2 rows in <span class="keyword">set</span> (<span class="number">0.01</span> sec)</span><br></pre></td></tr></table></figure></p>
+<p>10.向表中插入一条记录<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; insert into student values ('862501010','xiaoming');</span><br><span class="line">Query OK, 1 row affected (0.03 sec)</span><br></pre></td></tr></table></figure></p>
+<p>11.删除表中字段为某个值的记录<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; delete from student where sname='xiaoming';</span><br><span class="line">Query OK, 1 row affected (0.02 sec)</span><br></pre></td></tr></table></figure></p>
+<p>12.修改表中某个字段中某个值（where后面的值为找到这条记录的条件，前面的是要修改的值）<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; update student set sid='86250102' where sname='xiaohong';</span><br><span class="line">Query OK, 1 row affected (0.03 sec)</span><br><span class="line">Rows matched: 1  Changed: 1  Warnings: 0</span><br></pre></td></tr></table></figure></p>
+<p>13.给表中的某个字段增加主键<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; alter table student add primary key(sid);</span><br><span class="line">Query OK, 1 row affected (0.18 sec)</span><br><span class="line">Records: 1  Duplicates: 0  Warnings: 0</span><br></pre></td></tr></table></figure></p>
+<p>14.删除主键<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; alter table student drop primary key;</span><br><span class="line">Query OK, 1 row affected (0.13 sec)</span><br><span class="line">Records: 1  Duplicates: 0  Warnings: 0</span><br></pre></td></tr></table></figure></p>
+<p>15.另一种添加主键的方法（修改字段）<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; alter table student modify sid int primary key;</span><br><span class="line">Query OK, 0 rows affected (0.15 sec)</span><br><span class="line">Records: 0  Duplicates: 0  Warnings: 0</span><br></pre></td></tr></table></figure></p>
+<h2 id="MySQL建表约束"><a href="#MySQL建表约束" class="headerlink" title="MySQL建表约束"></a>MySQL建表约束</h2><p><strong>主键约束：</strong>它能够唯一确定一张表的一条记录，也就是我们通过给某个字段添加约束，使得该字段不能重复且不为空</p>
+<ul>
+<li>联合主键：当两个数据表形成的是多对多的关系，那么需要通过两个数据表的主键形成联合主键，就可以确定每个数据表的其中一条记录了</li>
+<li>复合主键：在一个数据表中通过多个字段作为主键来确定一条记录，那么，多个字段组成的就是复合主键（id和name单拎出来可能会有重复的，但是只要两个加在一起不重复，就可以使用）<br>16.建表时添加主键约束（单主键）<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table user (</span><br><span class="line">    -&gt;  id int primary key,</span><br><span class="line">    -&gt;  name varchar(20)</span><br><span class="line">    -&gt; );</span><br><span class="line">Query OK, 0 rows affected (0.08 sec)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>17.多主键<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table user (</span><br><span class="line">    -&gt;  id int,</span><br><span class="line">    -&gt;  name varchar(20),</span><br><span class="line">    -&gt;  primary key(id,name)</span><br><span class="line">    -&gt; );</span><br><span class="line">Query OK, 0 rows affected (0.05 sec)</span><br></pre></td></tr></table></figure></p>
+<p><strong>自增约束：</strong>在插入下一条记录的值会自动加1<br>18.建表时添加自增约束<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table user (</span><br><span class="line">    -&gt;  id int primary key auto_increment,</span><br><span class="line">    -&gt;  name varchar(20)</span><br><span class="line">    -&gt; );</span><br><span class="line">Query OK, 0 rows affected (0.07 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; insert into user (name) values('wanghan');</span><br><span class="line">Query OK, 1 row affected (0.02 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; insert into user (name) values('wangli');</span><br><span class="line">Query OK, 1 row affected (0.02 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from user;</span><br><span class="line">+<span class="comment">----+---------+</span></span><br><span class="line">| id | name    |</span><br><span class="line">+<span class="comment">----+---------+</span></span><br><span class="line">|  1 | wanghan |</span><br><span class="line">|  2 | wangli  |</span><br><span class="line">+<span class="comment">----+---------+</span></span><br><span class="line">2 rows in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<p><strong>唯一约束：</strong>约束修饰的字段的值不可以重复<br>19.唯一约束（单约束）<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table user (</span><br><span class="line">    -&gt;  id int unique,</span><br><span class="line">    -&gt;  name varchar(20)</span><br><span class="line">    -&gt; );</span><br><span class="line">Query OK, 0 rows affected (0.06 sec)</span><br></pre></td></tr></table></figure></p>
+<p>20.多约束（和复合主键一样，只要多个字段加在一起是唯一的就可以就行）<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table user (</span><br><span class="line">    -&gt;  id int,</span><br><span class="line">    -&gt;  name varchar(20),</span><br><span class="line">    -&gt;  unique(id,name)</span><br><span class="line">    -&gt; );</span><br><span class="line">Query OK, 0 rows affected (0.07 sec)</span><br></pre></td></tr></table></figure></p>
+<p>21.删除约束（好像这里字段只填id也会把所有的唯一约束都删掉）<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; alter table user drop index id;</span><br><span class="line">Query OK, 0 rows affected (0.11 sec)</span><br><span class="line">Records: 0  Duplicates: 0  Warnings: 0</span><br></pre></td></tr></table></figure></p>
+<p>22.添加约束<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; alter table user add unique(id,name);</span><br><span class="line">Query OK, 0 rows affected (0.09 sec)</span><br><span class="line">Records: 0  Duplicates: 0  Warnings: 0</span><br></pre></td></tr></table></figure></p>
+<p><strong>非空约束：</strong>修饰的字段不能为空NULL<br>23.非空约束<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table user (</span><br><span class="line">    -&gt;  id int not null,</span><br><span class="line">    -&gt;  name varchar(20)</span><br><span class="line">    -&gt; );</span><br><span class="line">Query OK, 0 rows affected (0.08 sec)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">user</span> (</span><br><span class="line">	<span class="keyword">id</span> <span class="built_in">int</span> <span class="keyword">default</span> <span class="number">10</span>,</span><br><span class="line">	<span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">20</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p><strong>默认约束：</strong>当我们插入字段值的时候，如果没有传值，就会使用默认值<br>24.默认约束<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table user (</span><br><span class="line">    -&gt;  id int default 10,</span><br><span class="line">    -&gt;  name varchar(20)</span><br><span class="line">    -&gt; );</span><br><span class="line">Query OK, 0 rows affected (0.14 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; desc user;</span><br><span class="line">+<span class="comment">-------+-------------+------+-----+---------+-------+</span></span><br><span class="line">| Field | Type        | Null | Key | Default | Extra |</span><br><span class="line">+<span class="comment">-------+-------------+------+-----+---------+-------+</span></span><br><span class="line">| id    | int(11)     | YES  |     | 10      |       |</span><br><span class="line">| name  | varchar(20) | YES  |     | NULL    |       |</span><br><span class="line">+<span class="comment">-------+-------------+------+-----+---------+-------+</span></span><br><span class="line">2 rows in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<p><strong>外键约束：</strong>涉及到两个表：父表、子表（主表、副表）</p>
+<ul>
+<li>主表（父表）中没有的数据值，在副表（子表）中是不可以使用的</li>
+<li>主表中的记录被副表引用，是不可以被删除的<br>25.外键约束<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table classes (</span><br><span class="line">    -&gt; id int primary key,</span><br><span class="line">    -&gt; name varchar(20) );</span><br><span class="line">Query OK, 0 rows affected (0.06 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; create table students (</span><br><span class="line">    -&gt; id int primary key,</span><br><span class="line">    -&gt; name varchar(20),</span><br><span class="line">    -&gt; class_id int,</span><br><span class="line">    -&gt; foreign key(class_id) references classes(id) );</span><br><span class="line">Query OK, 0 rows affected (0.09 sec)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>26.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>27.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>28.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>29.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>30.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+
       
 
       
@@ -221,6 +271,29 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">周记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SQL语句</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -477,7 +550,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">STL算法</a>
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">群体数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">类模板</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -501,15 +582,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">栈</a>
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">群体数据</a>
+                <a href="javascript:void(0)" class="js-tag color5">泛型编程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">类模板</a>
+                <a href="javascript:void(0)" class="js-tag color1">标准模板库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,11 +622,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">STL算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -553,19 +634,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">泛型编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">标准模板库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">周记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">SQL语句</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">
