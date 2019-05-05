@@ -9,14 +9,14 @@
   <title>【周记】第17周总结 | 郑志豪的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="SQLSQL是用于访问和处理数据库的标准的计算机语言  SQL指结构化查询语言 SQL使我们有能力访问数据库 SQL是一种ANSI(美国国家标准化组织)的标准计算机语言  注：SQL是这个星期自主学习的主要内容，学习了很小一部分，由于学习的比较零散，可能总结的比较乱，但是希望记录下来，作为以后的可能用到的笔记 常见的SQL语句git bash中进入mysql(已设置了环境变量)1$ winpty">
-<meta name="keywords" content="MySQL,周记,SQL语句,数据库">
+<meta name="keywords" content="MySQL,周记,SQL语句,数据库,五大约束,三大范式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【周记】第17周总结">
 <meta property="og:url" content="http://yoursite.com/2019/04/28/【周记】第17周总结/index.html">
 <meta property="og:site_name" content="郑志豪的个人博客">
 <meta property="og:description" content="SQLSQL是用于访问和处理数据库的标准的计算机语言  SQL指结构化查询语言 SQL使我们有能力访问数据库 SQL是一种ANSI(美国国家标准化组织)的标准计算机语言  注：SQL是这个星期自主学习的主要内容，学习了很小一部分，由于学习的比较零散，可能总结的比较乱，但是希望记录下来，作为以后的可能用到的笔记 常见的SQL语句git bash中进入mysql(已设置了环境变量)1$ winpty">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-29T17:10:00.225Z">
+<meta property="og:updated_time" content="2019-05-05T14:13:49.701Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【周记】第17周总结">
 <meta name="twitter:description" content="SQLSQL是用于访问和处理数据库的标准的计算机语言  SQL指结构化查询语言 SQL使我们有能力访问数据库 SQL是一种ANSI(美国国家标准化组织)的标准计算机语言  注：SQL是这个星期自主学习的主要内容，学习了很小一部分，由于学习的比较零散，可能总结的比较乱，但是希望记录下来，作为以后的可能用到的笔记 常见的SQL语句git bash中进入mysql(已设置了环境变量)1$ winpty">
@@ -237,11 +237,19 @@
 <li>主表中的记录被副表引用，是不可以被删除的<br>25.外键约束<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table classes (</span><br><span class="line">    -&gt; id int primary key,</span><br><span class="line">    -&gt; name varchar(20) );</span><br><span class="line">Query OK, 0 rows affected (0.06 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; create table students (</span><br><span class="line">    -&gt; id int primary key,</span><br><span class="line">    -&gt; name varchar(20),</span><br><span class="line">    -&gt; class_id int,</span><br><span class="line">    -&gt; foreign key(class_id) references classes(id) );</span><br><span class="line">Query OK, 0 rows affected (0.09 sec)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>26.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<p>27.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<p>28.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<p>29.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<p>30.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<h2 id="数据库的三大设计范式"><a href="#数据库的三大设计范式" class="headerlink" title="数据库的三大设计范式"></a>数据库的三大设计范式</h2><h3 id="第一范式（1NF）"><a href="#第一范式（1NF）" class="headerlink" title="第一范式（1NF）"></a>第一范式（1NF）</h3><p>数据表中的所有字段都是不可分割的原子值</p>
+<p><strong>例：</strong>address 这个字段就不是原子值因为它还可具体往下拆分为country、city、street等<br>范式设计的越详细，对于某些实际操作可能更好，但是不一定都是好处。</p>
+<h3 id="第二范式（2NF）"><a href="#第二范式（2NF）" class="headerlink" title="第二范式（2NF）"></a>第二范式（2NF）</h3><p>必须在满足第一范式的前提下。第二范式除主键外的每一个字段都要完全依赖于主键<br>如果出现不完全依赖，只可能发生在复合主键的情况下</p>
+<p><strong>例：</strong><br>26.不完全依赖<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table myorder(</span><br><span class="line">    -&gt;  product_id int,</span><br><span class="line">    -&gt;  customer_id int,</span><br><span class="line">    -&gt;  product_name varchar(20),</span><br><span class="line">    -&gt;  customer_name varchar(20),</span><br><span class="line">    -&gt;  primary key(product_id,customer_id)</span><br><span class="line">    -&gt; );</span><br><span class="line">Query OK, 0 rows affected (0.06 sec)</span><br></pre></td></tr></table></figure></p>
+<p>从上面的例子可以看出，product_name是依赖于主键product_id的，而customer_name是依赖于主键customer_id的，所以这就是联合主键的不完全依赖<br>在这种情况下我们要进行拆表</p>
+<p>27.拆表<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table myorder(</span><br><span class="line">    -&gt;  order_id int primary key,</span><br><span class="line">    -&gt;  product_id int,</span><br><span class="line">    -&gt;  customer_id int</span><br><span class="line">    -&gt; );</span><br><span class="line">Query OK, 0 rows affected (0.06 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; create table product(</span><br><span class="line">    -&gt;  id int primary key,</span><br><span class="line">    -&gt;  name varchar(20)</span><br><span class="line">    -&gt; );</span><br><span class="line">Query OK, 0 rows affected (0.07 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; create table customer(</span><br><span class="line">    -&gt;  id int primary key,</span><br><span class="line">    -&gt;  name varchar(20)</span><br><span class="line">    -&gt; );</span><br><span class="line">Query OK, 0 rows affected (0.08 sec)</span><br></pre></td></tr></table></figure></p>
+<p>这样就可以清晰的看出每个表都是的每个非主键的字段都完全依赖于主键</p>
+<h3 id="第三范式（3NF）"><a href="#第三范式（3NF）" class="headerlink" title="第三范式（3NF）"></a>第三范式（3NF）</h3><p>必须满足第二范式，除去主键列的其他列主键不能有传递依赖关系</p>
+<p><strong>例：</strong><br>28.传递依赖关系<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table myorder(</span><br><span class="line">    -&gt;  order_id int primary key,</span><br><span class="line">    -&gt;  product_id int,</span><br><span class="line">    -&gt;  customer_id int,</span><br><span class="line">    -&gt;  customer_phone varchar(15)</span><br><span class="line">    -&gt; );</span><br><span class="line">Query OK, 0 rows affected (0.07 sec)</span><br></pre></td></tr></table></figure></p>
+<p>从上面的例子中可以知道这是可能满足第二范式的，但是不满足第三范式，因为customer_phone可能对customer_id具有传递依赖关系</p>
+<p>因此我们要把传递依赖的属性放到它向对应的表中</p>
+<p>29.解决传递依赖关系<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table customer(</span><br><span class="line">    -&gt;  id int primary key,</span><br><span class="line">    -&gt;  name varchar(20),</span><br><span class="line">    -&gt;  phone varchar(15)</span><br><span class="line">    -&gt; );</span><br><span class="line">Query OK, 0 rows affected (0.07 sec)</span><br></pre></td></tr></table></figure></p>
+<h3 id="范式的作用"><a href="#范式的作用" class="headerlink" title="范式的作用"></a>范式的作用</h3><p>范式是为了解决数据冗余，数据有效性检查，提高存储效率。</p>
 
       
 
@@ -289,6 +297,14 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">五大约束</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">三大范式</a>
         		</li>
       		
 		</ul>
@@ -518,6 +534,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">函数对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">functional</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">绑定适配器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">组合适配器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">成员函数适配器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">容器</a>
               </li>
              
@@ -527,6 +563,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">关联容器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">STL算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -550,6 +590,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">泛型编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">标准模板库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -562,39 +614,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">函数对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">functional</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">绑定适配器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">组合适配器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">成员函数适配器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">泛型编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">标准模板库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -622,15 +642,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">STL算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">函数模板</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -646,7 +666,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+                <a href="javascript:void(0)" class="js-tag color5">五大约束</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">三大范式</a>
               </li>
              
               <li class="article-tag-list-item">
