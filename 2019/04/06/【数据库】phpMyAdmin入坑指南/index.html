@@ -9,7 +9,7 @@
   <title>【数据库】phpMyAdmin入坑指南 | 郑志豪的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="最近准备要学习Java SSM框架，其中有一部分涉及到数据库，而我对数据库并不熟悉，于是搜了一下，选择了phpMyAdmin作为我的数据库管理工具，以方便我管理数据库。但是在环境搭建的时候我也遇到了不小的困难，于是用这篇博客记录下我的搭建过程以及爬过的坑。 准备工作安装软件下载网址：  Apache：https://www.apachehaus.com/cgi-bin/download.plx">
-<meta name="keywords" content="随笔,数据库管理工具,phpMyAdmin,MySQL,PHP,Apache">
+<meta name="keywords" content="数据库,数据库管理工具,phpMyAdmin,MySQL,PHP,Apache">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【数据库】phpMyAdmin入坑指南">
 <meta property="og:url" content="http://yoursite.com/2019/04/06/【数据库】phpMyAdmin入坑指南/index.html">
@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/04/06/【数据库】phpMyAdmin入坑指南/myadmin3.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/06/【数据库】phpMyAdmin入坑指南/myadmin4.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/06/【数据库】phpMyAdmin入坑指南/数据库错误.png">
-<meta property="og:updated_time" content="2019-04-20T03:19:40.882Z">
+<meta property="og:updated_time" content="2019-07-24T05:57:57.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【数据库】phpMyAdmin入坑指南">
 <meta name="twitter:description" content="最近准备要学习Java SSM框架，其中有一部分涉及到数据库，而我对数据库并不熟悉，于是搜了一下，选择了phpMyAdmin作为我的数据库管理工具，以方便我管理数据库。但是在环境搭建的时候我也遇到了不小的困难，于是用这篇博客记录下我的搭建过程以及爬过的坑。 准备工作安装软件下载网址：  Apache：https://www.apachehaus.com/cgi-bin/download.plx">
@@ -75,6 +75,8 @@
 				<li><a href="/">主页</a></li>
 	        
 				<li><a href="/tags/C＋＋/">C++</a></li>
+	        
+				<li><a href="/tags/数据库/">数据库</a></li>
 	        
 				<li><a href="/tags/算法/">算法</a></li>
 	        
@@ -144,6 +146,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -164,15 +168,17 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 20%"><a href="/">主页</a></li>
+					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
 		        
-					<li style="width: 20%"><a href="/tags/C＋＋/">C++</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tags/C＋＋/">C++</a></li>
 		        
-					<li style="width: 20%"><a href="/tags/算法/">算法</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tags/数据库/">数据库</a></li>
 		        
-					<li style="width: 20%"><a href="/tags/周记/">周记</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tags/算法/">算法</a></li>
 		        
-					<li style="width: 20%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tags/周记/">周记</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -264,7 +270,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -515,22 +521,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">迭代器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">STL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">容器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">关联容器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">函数对象</a>
               </li>
              
@@ -551,11 +541,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">STL算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">STL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">容器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">关联容器</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">顺序容器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">STL算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -579,6 +581,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">泛型编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">标准模板库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">迭代器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -588,18 +606,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">类模板</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">泛型编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">标准模板库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -631,7 +637,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">SQL语句</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">SQL Server 2014</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -655,23 +669,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">函数模板</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数组</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">链表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SQL语句</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -680,6 +682,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">三大范式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">函数模板</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
               </li>
              
               <li class="article-tag-list-item">
