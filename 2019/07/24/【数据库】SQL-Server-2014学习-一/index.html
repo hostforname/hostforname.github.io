@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>【数据库】SQL Server 2014学习(一) | 郑志豪的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="创建数据库下面将使用sql脚本来创建一个数据库：123456789101112131415create database testdbon primary (name=&apos;testdb&apos;,filename=&apos;E:\testdb\testdb.mdf&apos;,size=10MB,maxsize=100MB,filegrowth=5MB)log on (name=&apos;testdb_log&apos;,filename=&apos;">
+  <meta name="description" content="创建数据库首先我们先要创建一个数据库，这里对图形化界面的创建不做过多的说明，主要记录下怎么使用命令创建。  知识点 数据库里面有三种类型的文件,分别为：主文件(后缀名为.mdf)，事务日志文件(后缀名为.ldf)，辅助数据文件(后缀名为.ndf) 主数据文件：用来存储数据库的数据和数据库启动信息，每个数据库必须有且只有一个主数据文件 事务日志文件：用来存放数据库的事务日志，例如：数据库的增、删、改">
 <meta name="keywords" content="数据库,SQL语句,SQL Server 2014">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【数据库】SQL Server 2014学习(一)">
 <meta property="og:url" content="http://yoursite.com/2019/07/24/【数据库】SQL-Server-2014学习-一/index.html">
 <meta property="og:site_name" content="郑志豪的个人博客">
-<meta property="og:description" content="创建数据库下面将使用sql脚本来创建一个数据库：123456789101112131415create database testdbon primary (name=&apos;testdb&apos;,filename=&apos;E:\testdb\testdb.mdf&apos;,size=10MB,maxsize=100MB,filegrowth=5MB)log on (name=&apos;testdb_log&apos;,filename=&apos;">
+<meta property="og:description" content="创建数据库首先我们先要创建一个数据库，这里对图形化界面的创建不做过多的说明，主要记录下怎么使用命令创建。  知识点 数据库里面有三种类型的文件,分别为：主文件(后缀名为.mdf)，事务日志文件(后缀名为.ldf)，辅助数据文件(后缀名为.ndf) 主数据文件：用来存储数据库的数据和数据库启动信息，每个数据库必须有且只有一个主数据文件 事务日志文件：用来存放数据库的事务日志，例如：数据库的增、删、改">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-24T05:54:10.552Z">
+<meta property="og:updated_time" content="2019-07-24T14:30:31.048Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【数据库】SQL Server 2014学习(一)">
-<meta name="twitter:description" content="创建数据库下面将使用sql脚本来创建一个数据库：123456789101112131415create database testdbon primary (name=&apos;testdb&apos;,filename=&apos;E:\testdb\testdb.mdf&apos;,size=10MB,maxsize=100MB,filegrowth=5MB)log on (name=&apos;testdb_log&apos;,filename=&apos;">
+<meta name="twitter:description" content="创建数据库首先我们先要创建一个数据库，这里对图形化界面的创建不做过多的说明，主要记录下怎么使用命令创建。  知识点 数据库里面有三种类型的文件,分别为：主文件(后缀名为.mdf)，事务日志文件(后缀名为.ldf)，辅助数据文件(后缀名为.ndf) 主数据文件：用来存储数据库的数据和数据库启动信息，每个数据库必须有且只有一个主数据文件 事务日志文件：用来存放数据库的事务日志，例如：数据库的增、删、改">
   
     <link rel="alternative" href="/atom.xml" title="郑志豪的个人博客" type="application/atom+xml">
   
@@ -199,7 +199,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>下面将使用sql脚本来创建一个数据库：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> testdb</span><br><span class="line"><span class="keyword">on</span> primary (</span><br><span class="line"><span class="keyword">name</span>=<span class="string">'testdb'</span>,</span><br><span class="line">filename=<span class="string">'E:\testdb\testdb.mdf'</span>,</span><br><span class="line"><span class="keyword">size</span>=<span class="number">10</span>MB,</span><br><span class="line"><span class="keyword">maxsize</span>=<span class="number">100</span>MB,</span><br><span class="line">filegrowth=<span class="number">5</span>MB</span><br><span class="line">)</span><br><span class="line"><span class="keyword">log</span> <span class="keyword">on</span> (</span><br><span class="line"><span class="keyword">name</span>=<span class="string">'testdb_log'</span>,</span><br><span class="line">filename=<span class="string">'E:\testdb\testdb_log.ldf'</span>,</span><br><span class="line"><span class="keyword">size</span>=<span class="number">10</span>MB,</span><br><span class="line"><span class="keyword">maxsize</span>=<span class="number">100</span>MB,</span><br><span class="line">filegrowth=<span class="number">5</span>MB</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+        <h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>首先我们先要创建一个数据库，这里对图形化界面的创建不做过多的说明，主要记录下怎么使用命令创建。</p>
+<ul>
+<li>知识点<ul>
+<li>数据库里面有三种类型的文件,分别为：主文件(后缀名为.mdf)，事务日志文件(后缀名为.ldf)，辅助数据文件(后缀名为.ndf)</li>
+<li>主数据文件：用来存储数据库的数据和数据库启动信息，每个数据库必须有且只有一个主数据文件</li>
+<li>事务日志文件：用来存放数据库的事务日志，例如：数据库的增、删、改等操作，每个数据至少有一个事务日志文件</li>
+<li>辅助数据文件：用来存储数据的数据，可以扩展存储空间，一个数据库可以有多个辅助数据文件，也可以没有。</li>
+</ul>
+</li>
+</ul>
+<p>下面将使用sql脚本来创建一个数据库：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> testdb <span class="comment">--创建名为testdb的数据库</span></span><br><span class="line"><span class="keyword">on</span> primary (	<span class="comment">--主数据文件</span></span><br><span class="line"><span class="keyword">name</span>=<span class="string">'testdb'</span>,	<span class="comment">--名字</span></span><br><span class="line">filename=<span class="string">'E:\testdb\testdb.mdf'</span>,	<span class="comment">--存放的地址</span></span><br><span class="line"><span class="keyword">size</span>=<span class="number">10</span>MB,	<span class="comment">--初始容量</span></span><br><span class="line"><span class="keyword">maxsize</span>=<span class="number">100</span>MB,	<span class="comment">--最大容量</span></span><br><span class="line">filegrowth=<span class="number">5</span>MB	<span class="comment">--每次增长的容量，这里可以选择具体大小也可以用百分比‘10%’这样的</span></span><br><span class="line">),(</span><br><span class="line"><span class="keyword">name</span>=<span class="string">'test_dat01'</span>,<span class="comment">--辅助数据文件</span></span><br><span class="line">filename=<span class="string">'E:\testdb\testdb_dat01.ndf'</span>,	<span class="comment">--存放的地址</span></span><br><span class="line"><span class="keyword">size</span>=<span class="number">10</span>MB,	<span class="comment">--初始容量</span></span><br><span class="line"><span class="keyword">maxsize</span>=<span class="number">100</span>MB,	<span class="comment">--最大容量</span></span><br><span class="line">filegrowth=<span class="number">5</span>MB	<span class="comment">--每次增长的容量</span></span><br><span class="line">),</span><br><span class="line">FILEGROUP SalesGroup1(	<span class="comment">--创建文件组</span></span><br><span class="line"><span class="keyword">name</span>=<span class="string">'test1_dat02'</span>, <span class="comment">--辅助数据文件</span></span><br><span class="line">filename=<span class="string">'E:\testdb\testdb_dat02.ndf'</span>,	<span class="comment">--存放的地址</span></span><br><span class="line"><span class="keyword">size</span>=<span class="number">10</span>MB,	<span class="comment">--初始容量</span></span><br><span class="line"><span class="keyword">maxsize</span>=<span class="number">100</span>MB,	<span class="comment">--最大容量</span></span><br><span class="line">filegrowth=<span class="number">5</span>MB	<span class="comment">--每次增长的容量</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">log</span> <span class="keyword">on</span> (	<span class="comment">--事务日志文件</span></span><br><span class="line"><span class="keyword">name</span>=<span class="string">'testdb_log'</span>,	<span class="comment">--名字</span></span><br><span class="line">filename=<span class="string">'E:\testdb\testdb_log.ldf'</span>,	<span class="comment">--存放的地址</span></span><br><span class="line"><span class="keyword">size</span>=<span class="number">10</span>MB,	<span class="comment">--初始容量</span></span><br><span class="line"><span class="keyword">maxsize</span>=<span class="number">100</span>MB,	<span class="comment">--最大容量</span></span><br><span class="line">filegrowth=<span class="number">5</span>MB	<span class="comment">--每次增长的容量</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<p>查看数据库详细信息：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec sp_helpdb testdb;	<span class="comment">--查看数据详细信息</span></span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h2 id="修改数据库信息"><a href="#修改数据库信息" class="headerlink" title="修改数据库信息"></a>修改数据库信息</h2><p>修改数据库名称：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">database</span> testdb	<span class="comment">--修改数据库testdb</span></span><br><span class="line"><span class="keyword">modify</span> <span class="keyword">name</span>=testdb02;	<span class="comment">--名字修改为testdb02</span></span><br></pre></td></tr></table></figure></p>
+<p>修改数据库文件属性：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">database</span> testdb02 <span class="comment">--修改数据库testdb</span></span><br><span class="line"><span class="keyword">modify</span> <span class="keyword">file</span>(	<span class="comment">--修改文件属性</span></span><br><span class="line"><span class="keyword">name</span>=testdb,	<span class="comment">--名字叫testdb</span></span><br><span class="line">newname=testdb01, <span class="comment">--新名字为testdb01</span></span><br><span class="line"><span class="keyword">size</span>=<span class="number">20</span>MB,		<span class="comment">--容量修改为20MB</span></span><br><span class="line"><span class="keyword">maxsize</span>=<span class="number">50</span>MB,	<span class="comment">--最大容量修改为50MB</span></span><br><span class="line">filegrowth=<span class="number">5</span>MB	<span class="comment">--增长大小为5MB</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<p>删除数据库(如果删除不了说明数据库正在使用，需要先将数据库分离)：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">database</span> testdb02; <span class="comment">--删除数据库testdb02</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="数据库备份与还原"><a href="#数据库备份与还原" class="headerlink" title="数据库备份与还原"></a>数据库备份与还原</h2><h3 id="数据库备份"><a href="#数据库备份" class="headerlink" title="数据库备份"></a>数据库备份</h3><p><strong>图像化界面</strong><br>1.选择自己创建的数据库右键，选择任务-&gt;备份<br>2.在弹出的对话框中可以选择备份类型(完整备份，差异，事务日志)，根据自己需要进行选择<br>3.目标栏选择需要备份到的地址，点击确定</p>
+<p><strong>SQL脚本</strong><br>也可以使用sql脚本进行备份：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">backup</span> <span class="keyword">database</span> testdb <span class="keyword">to</span> disk=<span class="string">'E:\testdb\testdb.bak'</span>	<span class="comment">--全备份</span></span><br><span class="line"><span class="keyword">with</span> compression;	<span class="comment">--压缩备份，压缩备份适用于2008以上的版本，对备份进行压缩备份</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="数据库还原"><a href="#数据库还原" class="headerlink" title="数据库还原"></a>数据库还原</h3><p><strong>图像化界面</strong><br>1.选择使用者下的数据库右键，选择还原数据库<br>2.源栏下选择设备，找到要还原的备份文件<br>3.点击确定</p>
+<p><strong>SQL脚本</strong><br>也可以使用sql脚本进行还原：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="keyword">master</span>;	<span class="comment">--使用SQL自带的数据库</span></span><br><span class="line"><span class="keyword">restore</span> <span class="keyword">database</span> testdb <span class="keyword">from</span> disk=<span class="string">'E:\testdb\testdb.bak'</span>;	<span class="comment">--还原数据库</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里所列对数据库的操作并不一定完整，例如像对数据库加密备份，对数据库进行事务日志备份，差异备份等都没有介绍。但是这上面都是些比较基础的操作，记录下来方便以后查阅。</p>
 
       
 
@@ -464,6 +484,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">迭代器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">STL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">容器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">关联容器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">顺序容器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">函数对象</a>
               </li>
              
@@ -481,22 +521,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">成员函数适配器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">STL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">容器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">关联容器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">顺序容器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -529,10 +553,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">标准模板库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">迭代器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -616,6 +636,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">函数模板</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
@@ -625,14 +653,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">三大范式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">函数模板</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数组</a>
               </li>
              
               <li class="article-tag-list-item">

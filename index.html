@@ -199,8 +199,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>下面将使用sql脚本来创建一个数据库：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> testdb</span><br><span class="line"><span class="keyword">on</span> primary (</span><br><span class="line"><span class="keyword">name</span>=<span class="string">'testdb'</span>,</span><br><span class="line">filename=<span class="string">'E:\testdb\testdb.mdf'</span>,</span><br><span class="line"><span class="keyword">size</span>=<span class="number">10</span>MB,</span><br><span class="line"><span class="keyword">maxsize</span>=<span class="number">100</span>MB,</span><br><span class="line">filegrowth=<span class="number">5</span>MB</span><br><span class="line">)</span><br><span class="line"><span class="keyword">log</span> <span class="keyword">on</span> (</span><br><span class="line"><span class="keyword">name</span>=<span class="string">'testdb_log'</span>,</span><br><span class="line">filename=<span class="string">'E:\testdb\testdb_log.ldf'</span>,</span><br><span class="line"><span class="keyword">size</span>=<span class="number">10</span>MB,</span><br><span class="line"><span class="keyword">maxsize</span>=<span class="number">100</span>MB,</span><br><span class="line">filegrowth=<span class="number">5</span>MB</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
-
+        <h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>首先我们先要创建一个数据库，这里对图形化界面的创建不做过多的说明，主要记录下怎么使用命令创建。</p>
+<ul>
+<li>知识点<ul>
+<li>数据库里面有三种类型的文件,分别为：主文件(后缀名为.mdf)，事务日志文件(后缀名为.ldf)，辅助数据文件(后缀名为.ndf)</li>
+<li>主数据文件：用来存储数据库的数据和数据库启动信息，每个数据库必须有且只有一个主数据文件</li>
+<li>事务日志文件：用来存放数据库的事务日志，例如：数据库的增、删、改等操作，每个数据至少有一个事务日志文件</li>
+<li>辅助数据文件：用来存储数据的数据，可以扩展存储空间，一个数据库可以有多个辅助数据文件，也可以没有。</li>
+</ul>
+</li>
+</ul>
+<p>下面将使用sql脚本来创建一个数据库：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> testdb <span class="comment">--创建名为testdb的数据库</span></span><br><span class="line"><span class="keyword">on</span> primary (	<span class="comment">--主数据文件</span></span><br><span class="line"><span class="keyword">name</span>=<span class="string">'testdb'</span>,	<span class="comment">--名字</span></span><br><span class="line">filename=<span class="string">'E:\testdb\testdb.mdf'</span>,	<span class="comment">--存放的地址</span></span><br><span class="line"><span class="keyword">size</span>=<span class="number">10</span>MB,	<span class="comment">--初始容量</span></span><br><span class="line"><span class="keyword">maxsize</span>=<span class="number">100</span>MB,	<span class="comment">--最大容量</span></span><br><span class="line">filegrowth=<span class="number">5</span>MB	<span class="comment">--每次增长的容量，这里可以选择具体大小也可以用百分比‘10%’这样的</span></span><br><span class="line">),(</span><br><span class="line"><span class="keyword">name</span>=<span class="string">'test_dat01'</span>,<span class="comment">--辅助数据文件</span></span><br><span class="line">filename=<span class="string">'E:\testdb\testdb_dat01.ndf'</span>,	<span class="comment">--存放的地址</span></span><br><span class="line"><span class="keyword">size</span>=<span class="number">10</span>MB,	<span class="comment">--初始容量</span></span><br><span class="line"><span class="keyword">maxsize</span>=<span class="number">100</span>MB,	<span class="comment">--最大容量</span></span><br><span class="line">filegrowth=<span class="number">5</span>MB	<span class="comment">--每次增长的容量</span></span><br><span class="line">),</span><br><span class="line">FILEGROUP SalesGroup1(	<span class="comment">--创建文件组</span></span><br><span class="line"><span class="keyword">name</span>=<span class="string">'test1_dat02'</span>, <span class="comment">--辅助数据文件</span></span><br><span class="line">filename=<span class="string">'E:\testdb\testdb_dat02.ndf'</span>,	<span class="comment">--存放的地址</span></span><br><span class="line"><span class="keyword">size</span>=<span class="number">10</span>MB,	<span class="comment">--初始容量</span></span><br><span class="line"><span class="keyword">maxsize</span>=<span class="number">100</span>MB,	<span class="comment">--最大容量</span></span><br><span class="line">filegrowth=<span class="number">5</span>MB	<span class="comment">--每次增长的容量</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">log</span> <span class="keyword">on</span> (	<span class="comment">--事务日志文件</span></span><br><span class="line"><span class="keyword">name</span>=<span class="string">'testdb_log'</span>,	<span class="comment">--名字</span></span><br><span class="line">filename=<span class="string">'E:\testdb\testdb_log.ldf'</span>,	<span class="comment">--存放的地址</span></span><br><span class="line"><span class="keyword">size</span>=<span class="number">10</span>MB,	<span class="comment">--初始容量</span></span><br><span class="line"><span class="keyword">maxsize</span>=<span class="number">100</span>MB,	<span class="comment">--最大容量</span></span><br><span class="line">filegrowth=<span class="number">5</span>MB	<span class="comment">--每次增长的容量</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<p>查看数据库详细信息：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec sp_helpdb testdb;	<span class="comment">--查看数据详细信息</span></span><br></pre></td></tr></table></figure></p>
+        
       
 
       
@@ -920,6 +931,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">迭代器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">STL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">容器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">关联容器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">顺序容器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">函数对象</a>
               </li>
              
@@ -937,22 +968,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">成员函数适配器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">STL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">容器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">关联容器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">顺序容器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -985,10 +1000,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">标准模板库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">迭代器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1072,6 +1083,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">函数模板</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
@@ -1081,14 +1100,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">三大范式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">函数模板</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数组</a>
               </li>
              
               <li class="article-tag-list-item">
